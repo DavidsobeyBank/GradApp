@@ -17,7 +17,7 @@ namespace GradApp.Controllers
         // GET: Goals
         public ActionResult Index()
         {
-            var goals = db.Goals.Include(g => g.GradProj);
+            var goals = db.Goals.Include(g => g.Rotation);
             return View(goals.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace GradApp.Controllers
         // GET: Goals/Create
         public ActionResult Create()
         {
-            ViewBag.GradProjID = new SelectList(db.GradProjs, "GradProjID", "GradProjID");
+            ViewBag.RotationID = new SelectList(db.Rotations, "RotationID", "RotationID");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GoalID,GoalName,AreaID,GradProjID")] Goal goal)
+        public ActionResult Create([Bind(Include = "GoalID,GoalName,RotationID,GoalComment,GoalFeedback")] Goal goal)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace GradApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GradProjID = new SelectList(db.GradProjs, "GradProjID", "GradProjID", goal.GradProjID);
+            ViewBag.RotationID = new SelectList(db.Rotations, "RotationID", "RotationID", goal.RotationID);
             return View(goal);
         }
 
@@ -73,7 +73,7 @@ namespace GradApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.GradProjID = new SelectList(db.GradProjs, "GradProjID", "GradProjID", goal.GradProjID);
+            ViewBag.RotationID = new SelectList(db.Rotations, "RotationID", "RotationID", goal.RotationID);
             return View(goal);
         }
 
@@ -82,7 +82,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GoalID,GoalName,AreaID,GradProjID")] Goal goal)
+        public ActionResult Edit([Bind(Include = "GoalID,GoalName,RotationID,GoalComment,GoalFeedback")] Goal goal)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace GradApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.GradProjID = new SelectList(db.GradProjs, "GradProjID", "GradProjID", goal.GradProjID);
+            ViewBag.RotationID = new SelectList(db.Rotations, "RotationID", "RotationID", goal.RotationID);
             return View(goal);
         }
 

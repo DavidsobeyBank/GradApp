@@ -46,7 +46,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GraduateID,Name,Surname,Email")] Graduate graduate)
+        public ActionResult Create([Bind(Include = "GraduateID,Name,Surname,Email,PrefferedRole,Degree,GraduateYear")] Graduate graduate)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GraduateID,Name,Surname,Email")] Graduate graduate)
+        public ActionResult Edit([Bind(Include = "GraduateID,Name,Surname,Email,PrefferedRole,Degree,GraduateYear")] Graduate graduate)
         {
             if (ModelState.IsValid)
             {

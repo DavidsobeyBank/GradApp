@@ -16,9 +16,10 @@ namespace GradApp.Models
     {
         public int GoalID { get; set; }
         public string GoalName { get; set; }
-        public Nullable<int> AreaID { get; set; }
-        public Nullable<int> GradProjID { get; set; }
+        public Nullable<int> RotationID { get; set; }
+        public string GoalComment { get; set; }
+        public string GoalFeedback { get; set; }
     
-        public virtual GradProj GradProj { get; set; }
+        public virtual Rotation Rotation { get; set; }
     }
 }

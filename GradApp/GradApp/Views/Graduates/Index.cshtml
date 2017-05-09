@@ -21,6 +21,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrefferedRole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Degree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GraduateYear)
+        </th>
         <th></th>
     </tr>
 
@@ -34,6 +43,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrefferedRole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Degree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GraduateYear)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GraduateID }) |

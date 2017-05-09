@@ -27,10 +27,10 @@ namespace GradApp.Models
     
         public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<Goal> Goals { get; set; }
-        public virtual DbSet<GradProj> GradProjs { get; set; }
         public virtual DbSet<Graduate> Graduates { get; set; }
         public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<ProjectWishList> ProjectWishLists { get; set; }
+        public virtual DbSet<Rotation> Rotations { get; set; }
     }
 }

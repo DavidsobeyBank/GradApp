@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GradAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaName" Type="varchar" MaxLength="255" />
+          <Property Name="AreaBuilding" Type="varchar" MaxLength="255" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="AreaFloor" Type="varchar" MaxLength="255" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Goal">
+          <Key>
+            <PropertyRef Name="GoalID" />
+          </Key>
+          <Property Name="GoalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoalName" Type="varchar" MaxLength="255" />
+          <Property Name="RotationID" Type="int" />
+          <Property Name="GoalComment" Type="varchar" MaxLength="255" />
+          <Property Name="GoalFeedback" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Graduate">
+          <Key>
+            <PropertyRef Name="GraduateID" />
+          </Key>
+          <Property Name="GraduateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Surname" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="nchar" MaxLength="255" />
+          <Property Name="PrefferedRole" Type="varchar" MaxLength="255" />
+          <Property Name="Degree" Type="varchar" MaxLength="255" />
+          <Property Name="GraduateYear" Type="int" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Surname" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="255" />
+          <Property Name="AreaID" Type="int" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="Brief" Type="varchar(max)" />
+          <Property Name="Skills" Type="varchar(max)" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProjectWishList">
+          <Key>
+            <PropertyRef Name="WishListID" />
+          </Key>
+          <Property Name="WishListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="GraduateID" Type="int" />
+          <Property Name="Moivation" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Rotation">
+          <Key>
+            <PropertyRef Name="RotationID" />
+          </Key>
+          <Property Name="RotationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GraduateID" Type="int" />
+          <Property Name="ProjectID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Goal_Rotation">
+          <End Role="Rotation" Type="Self.Rotation" Multiplicity="0..1" />
+          <End Role="Goal" Type="Self.Goal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rotation">
+              <PropertyRef Name="RotationID" />
+            </Principal>
+            <Dependent Role="Goal">
+              <PropertyRef Name="RotationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerID">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProJAreaID">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWishList_Graduate">
+          <End Role="Graduate" Type="Self.Graduate" Multiplicity="0..1" />
+          <End Role="ProjectWishList" Type="Self.ProjectWishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Graduate">
+              <PropertyRef Name="GraduateID" />
+            </Principal>
+            <Dependent Role="ProjectWishList">
+              <PropertyRef Name="GraduateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWishList_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectWishList" Type="Self.ProjectWishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectWishList">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rotation_Graduate">
+          <End Role="Graduate" Type="Self.Graduate" Multiplicity="0..1" />
+          <End Role="Rotation" Type="Self.Rotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Graduate">
+              <PropertyRef Name="GraduateID" />
+            </Principal>
+            <Dependent Role="Rotation">
+              <PropertyRef Name="GraduateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rotation_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Rotation" Type="Self.Rotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Rotation">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GradAppModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goal" EntityType="Self.Goal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Graduate" EntityType="Self.Graduate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectWishList" EntityType="Self.ProjectWishList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rotation" EntityType="Self.Rotation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Goal_Rotation" Association="Self.FK_Goal_Rotation">
+            <End Role="Rotation" EntitySet="Rotation" />
+            <End Role="Goal" EntitySet="Goal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerID" Association="Self.FK_ManagerID">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Area" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProJAreaID" Association="Self.FK_ProJAreaID">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Manager" Association="Self.FK_Project_Manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWishList_Graduate" Association="Self.FK_ProjectWishList_Graduate">
+            <End Role="Graduate" EntitySet="Graduate" />
+            <End Role="ProjectWishList" EntitySet="ProjectWishList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWishList_Project" Association="Self.FK_ProjectWishList_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectWishList" EntitySet="ProjectWishList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rotation_Graduate" Association="Self.FK_Rotation_Graduate">
+            <End Role="Graduate" EntitySet="Graduate" />
+            <End Role="Rotation" EntitySet="Rotation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rotation_Project" Association="Self.FK_Rotation_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Rotation" EntitySet="Rotation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GradAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaID" />
+          </Key>
+          <Property Name="AreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AreaBuilding" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="AreaFloor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_ManagerID" FromRole="Area" ToRole="Manager" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_ProJAreaID" FromRole="Area" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Goal">
+          <Key>
+            <PropertyRef Name="GoalID" />
+          </Key>
+          <Property Name="GoalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoalName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RotationID" Type="Int32" />
+          <Property Name="GoalComment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GoalFeedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Rotation" Relationship="Self.FK_Goal_Rotation" FromRole="Goal" ToRole="Rotation" />
+        </EntityType>
+        <EntityType Name="Graduate">
+          <Key>
+            <PropertyRef Name="GraduateID" />
+          </Key>
+          <Property Name="GraduateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="PrefferedRole" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Degree" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateYear" Type="Int32" />
+          <NavigationProperty Name="ProjectWishLists" Relationship="Self.FK_ProjectWishList_Graduate" FromRole="Graduate" ToRole="ProjectWishList" />
+          <NavigationProperty Name="Rotations" Relationship="Self.FK_Rotation_Graduate" FromRole="Graduate" ToRole="Rotation" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK_ManagerID" FromRole="Manager" ToRole="Area" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Manager" FromRole="Manager" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AreaID" Type="Int32" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="Brief" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_ProJAreaID" FromRole="Project" ToRole="Area" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Project_Manager" FromRole="Project" ToRole="Manager" />
+          <NavigationProperty Name="ProjectWishLists" Relationship="Self.FK_ProjectWishList_Project" FromRole="Project" ToRole="ProjectWishList" />
+          <NavigationProperty Name="Rotations" Relationship="Self.FK_Rotation_Project" FromRole="Project" ToRole="Rotation" />
+        </EntityType>
+        <EntityType Name="ProjectWishList">
+          <Key>
+            <PropertyRef Name="WishListID" />
+          </Key>
+          <Property Name="WishListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="GraduateID" Type="Int32" />
+          <Property Name="Moivation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Graduate" Relationship="Self.FK_ProjectWishList_Graduate" FromRole="ProjectWishList" ToRole="Graduate" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_ProjectWishList_Project" FromRole="ProjectWishList" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Rotation">
+          <Key>
+            <PropertyRef Name="RotationID" />
+          </Key>
+          <Property Name="RotationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GraduateID" Type="Int32" />
+          <Property Name="ProjectID" Type="Int32" />
+          <NavigationProperty Name="Goals" Relationship="Self.FK_Goal_Rotation" FromRole="Rotation" ToRole="Goal" />
+          <NavigationProperty Name="Graduate" Relationship="Self.FK_Rotation_Graduate" FromRole="Rotation" ToRole="Graduate" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Rotation_Project" FromRole="Rotation" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_ManagerID">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProJAreaID">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goal_Rotation">
+          <End Role="Rotation" Type="Self.Rotation" Multiplicity="0..1" />
+          <End Role="Goal" Type="Self.Goal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rotation">
+              <PropertyRef Name="RotationID" />
+            </Principal>
+            <Dependent Role="Goal">
+              <PropertyRef Name="RotationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWishList_Graduate">
+          <End Role="Graduate" Type="Self.Graduate" Multiplicity="0..1" />
+          <End Role="ProjectWishList" Type="Self.ProjectWishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Graduate">
+              <PropertyRef Name="GraduateID" />
+            </Principal>
+            <Dependent Role="ProjectWishList">
+              <PropertyRef Name="GraduateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rotation_Graduate">
+          <End Role="Graduate" Type="Self.Graduate" Multiplicity="0..1" />
+          <End Role="Rotation" Type="Self.Rotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Graduate">
+              <PropertyRef Name="GraduateID" />
+            </Principal>
+            <Dependent Role="Rotation">
+              <PropertyRef Name="GraduateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectWishList_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectWishList" Type="Self.ProjectWishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectWishList">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rotation_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Rotation" Type="Self.Rotation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Rotation">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GradAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="Goals" EntityType="Self.Goal" />
+          <EntitySet Name="Graduates" EntityType="Self.Graduate" />
+          <EntitySet Name="Managers" EntityType="Self.Manager" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="ProjectWishLists" EntityType="Self.ProjectWishList" />
+          <EntitySet Name="Rotations" EntityType="Self.Rotation" />
+          <AssociationSet Name="FK_ManagerID" Association="Self.FK_ManagerID">
+            <End Role="Manager" EntitySet="Managers" />
+            <End Role="Area" EntitySet="Areas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProJAreaID" Association="Self.FK_ProJAreaID">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goal_Rotation" Association="Self.FK_Goal_Rotation">
+            <End Role="Rotation" EntitySet="Rotations" />
+            <End Role="Goal" EntitySet="Goals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWishList_Graduate" Association="Self.FK_ProjectWishList_Graduate">
+            <End Role="Graduate" EntitySet="Graduates" />
+            <End Role="ProjectWishList" EntitySet="ProjectWishLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rotation_Graduate" Association="Self.FK_Rotation_Graduate">
+            <End Role="Graduate" EntitySet="Graduates" />
+            <End Role="Rotation" EntitySet="Rotations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Manager" Association="Self.FK_Project_Manager">
+            <End Role="Manager" EntitySet="Managers" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectWishList_Project" Association="Self.FK_ProjectWishList_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectWishList" EntitySet="ProjectWishLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rotation_Project" Association="Self.FK_Rotation_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Rotation" EntitySet="Rotations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GradAppModelStoreContainer" CdmEntityContainer="GradAppEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="GradAppModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="AreaBuilding" ColumnName="AreaBuilding" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="AreaFloor" ColumnName="AreaFloor" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goals">
+            <EntityTypeMapping TypeName="GradAppModel.Goal">
+              <MappingFragment StoreEntitySet="Goal">
+                <ScalarProperty Name="GoalID" ColumnName="GoalID" />
+                <ScalarProperty Name="GoalName" ColumnName="GoalName" />
+                <ScalarProperty Name="RotationID" ColumnName="RotationID" />
+                <ScalarProperty Name="GoalComment" ColumnName="GoalComment" />
+                <ScalarProperty Name="GoalFeedback" ColumnName="GoalFeedback" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Graduates">
+            <EntityTypeMapping TypeName="GradAppModel.Graduate">
+              <MappingFragment StoreEntitySet="Graduate">
+                <ScalarProperty Name="GraduateID" ColumnName="GraduateID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PrefferedRole" ColumnName="PrefferedRole" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="GraduateYear" ColumnName="GraduateYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="GradAppModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="GradAppModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Brief" ColumnName="Brief" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectWishLists">
+            <EntityTypeMapping TypeName="GradAppModel.ProjectWishList">
+              <MappingFragment StoreEntitySet="ProjectWishList">
+                <ScalarProperty Name="WishListID" ColumnName="WishListID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="GraduateID" ColumnName="GraduateID" />
+                <ScalarProperty Name="Moivation" ColumnName="Moivation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rotations">
+            <EntityTypeMapping TypeName="GradAppModel.Rotation">
+              <MappingFragment StoreEntitySet="Rotation">
+                <ScalarProperty Name="RotationID" ColumnName="RotationID" />
+                <ScalarProperty Name="GraduateID" ColumnName="GraduateID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

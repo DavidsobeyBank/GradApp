@@ -12,21 +12,14 @@ namespace GradApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GradProj
+    public partial class ProjectWishList
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GradProj()
-        {
-            this.Goals = new HashSet<Goal>();
-        }
-    
-        public int GradProjID { get; set; }
-        public Nullable<int> GraduateID { get; set; }
+        public int WishListID { get; set; }
         public Nullable<int> ProjectID { get; set; }
+        public Nullable<int> GraduateID { get; set; }
+        public string Moivation { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Goal> Goals { get; set; }
-        public virtual Project Project { get; set; }
         public virtual Graduate Graduate { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

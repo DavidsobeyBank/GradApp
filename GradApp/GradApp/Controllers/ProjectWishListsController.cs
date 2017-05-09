@@ -10,116 +10,116 @@ using GradApp.Models;
 
 namespace GradApp.Controllers
 {
-    public class ProjectsController : Controller
+    public class ProjectWishListsController : Controller
     {
         private GradAppEntities db = new GradAppEntities();
 
-        // GET: Projects
+        // GET: ProjectWishLists
         public ActionResult Index()
         {
-            var projects = db.Projects.Include(p => p.Area).Include(p => p.Manager);
-            return View(projects.ToList());
+            var projectWishLists = db.ProjectWishLists.Include(p => p.Graduate).Include(p => p.Project);
+            return View(projectWishLists.ToList());
         }
 
-        // GET: Projects/Details/5
+        // GET: ProjectWishLists/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+            ProjectWishList projectWishList = db.ProjectWishLists.Find(id);
+            if (projectWishList == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(projectWishList);
         }
 
-        // GET: Projects/Create
+        // GET: ProjectWishLists/Create
         public ActionResult Create()
         {
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName");
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name");
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name");
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName");
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: ProjectWishLists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectID,ProjectName,AreaID,ManagerID,Brief,Skills,StartDate,EndDate")] Project project)
+        public ActionResult Create([Bind(Include = "WishListID,ProjectID,GraduateID,Moivation")] ProjectWishList projectWishList)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
+                db.ProjectWishLists.Add(projectWishList);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", project.AreaID);
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", project.ManagerID);
-            return View(project);
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name", projectWishList.GraduateID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName", projectWishList.ProjectID);
+            return View(projectWishList);
         }
 
-        // GET: Projects/Edit/5
+        // GET: ProjectWishLists/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+            ProjectWishList projectWishList = db.ProjectWishLists.Find(id);
+            if (projectWishList == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", project.AreaID);
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", project.ManagerID);
-            return View(project);
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name", projectWishList.GraduateID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName", projectWishList.ProjectID);
+            return View(projectWishList);
         }
 
-        // POST: Projects/Edit/5
+        // POST: ProjectWishLists/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProjectID,ProjectName,AreaID,ManagerID,Brief,Skills,StartDate,EndDate")] Project project)
+        public ActionResult Edit([Bind(Include = "WishListID,ProjectID,GraduateID,Moivation")] ProjectWishList projectWishList)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
+                db.Entry(projectWishList).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", project.AreaID);
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", project.ManagerID);
-            return View(project);
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name", projectWishList.GraduateID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName", projectWishList.ProjectID);
+            return View(projectWishList);
         }
 
-        // GET: Projects/Delete/5
+        // GET: ProjectWishLists/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+            ProjectWishList projectWishList = db.ProjectWishLists.Find(id);
+            if (projectWishList == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(projectWishList);
         }
 
-        // POST: Projects/Delete/5
+        // POST: ProjectWishLists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
+            ProjectWishList projectWishList = db.ProjectWishLists.Find(id);
+            db.ProjectWishLists.Remove(projectWishList);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -17,15 +17,21 @@ namespace GradApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Graduate()
         {
-            this.GradProjs = new HashSet<GradProj>();
+            this.ProjectWishLists = new HashSet<ProjectWishList>();
+            this.Rotations = new HashSet<Rotation>();
         }
     
         public int GraduateID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
+        public string PrefferedRole { get; set; }
+        public string Degree { get; set; }
+        public Nullable<int> GraduateYear { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GradProj> GradProjs { get; set; }
+        public virtual ICollection<ProjectWishList> ProjectWishLists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rotation> Rotations { get; set; }
     }
 }

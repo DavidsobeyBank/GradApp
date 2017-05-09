@@ -10,116 +10,116 @@ using GradApp.Models;
 
 namespace GradApp.Controllers
 {
-    public class ProjectsController : Controller
+    public class RotationsController : Controller
     {
         private GradAppEntities db = new GradAppEntities();
 
-        // GET: Projects
+        // GET: Rotations
         public ActionResult Index()
         {
-            var projects = db.Projects.Include(p => p.Area).Include(p => p.Manager);
-            return View(projects.ToList());
+            var rotations = db.Rotations.Include(r => r.Graduate).Include(r => r.Project);
+            return View(rotations.ToList());
         }
 
-        // GET: Projects/Details/5
+        // GET: Rotations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+            Rotation rotation = db.Rotations.Find(id);
+            if (rotation == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(rotation);
         }
 
-        // GET: Projects/Create
+        // GET: Rotations/Create
         public ActionResult Create()
         {
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName");
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name");
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name");
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName");
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: Rotations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectID,ProjectName,AreaID,ManagerID,Brief,Skills,StartDate,EndDate")] Project project)
+        public ActionResult Create([Bind(Include = "RotationID,GraduateID,ProjectID")] Rotation rotation)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
+                db.Rotations.Add(rotation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", project.AreaID);
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", project.ManagerID);
-            return View(project);
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name", rotation.GraduateID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName", rotation.ProjectID);
+            return View(rotation);
         }
 
-        // GET: Projects/Edit/5
+        // GET: Rotations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+            Rotation rotation = db.Rotations.Find(id);
+            if (rotation == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", project.AreaID);
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", project.ManagerID);
-            return View(project);
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name", rotation.GraduateID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName", rotation.ProjectID);
+            return View(rotation);
         }
 
-        // POST: Projects/Edit/5
+        // POST: Rotations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProjectID,ProjectName,AreaID,ManagerID,Brief,Skills,StartDate,EndDate")] Project project)
+        public ActionResult Edit([Bind(Include = "RotationID,GraduateID,ProjectID")] Rotation rotation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
+                db.Entry(rotation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", project.AreaID);
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", project.ManagerID);
-            return View(project);
+            ViewBag.GraduateID = new SelectList(db.Graduates, "GraduateID", "Name", rotation.GraduateID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ProjectID", "ProjectName", rotation.ProjectID);
+            return View(rotation);
         }
 
-        // GET: Projects/Delete/5
+        // GET: Rotations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+            Rotation rotation = db.Rotations.Find(id);
+            if (rotation == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(rotation);
         }
 
-        // POST: Projects/Delete/5
+        // POST: Rotations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
+            Rotation rotation = db.Rotations.Find(id);
+            db.Rotations.Remove(rotation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

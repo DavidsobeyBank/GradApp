@@ -16,10 +16,13 @@
             @Html.DisplayNameFor(model => model.GoalName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AreaID)
+            @Html.DisplayNameFor(model => model.GoalComment)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GradProj.GradProjID)
+            @Html.DisplayNameFor(model => model.GoalFeedback)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rotation.RotationID)
         </th>
         <th></th>
     </tr>
@@ -30,10 +33,13 @@
             @Html.DisplayFor(modelItem => item.GoalName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AreaID)
+            @Html.DisplayFor(modelItem => item.GoalComment)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GradProj.GradProjID)
+            @Html.DisplayFor(modelItem => item.GoalFeedback)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rotation.RotationID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GoalID }) |

@@ -12,23 +12,21 @@ namespace GradApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Manager
+    public partial class Rotation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Manager()
+        public Rotation()
         {
-            this.Areas = new HashSet<Area>();
-            this.Projects = new HashSet<Project>();
+            this.Goals = new HashSet<Goal>();
         }
     
-        public int ManagerID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; }
+        public int RotationID { get; set; }
+        public Nullable<int> GraduateID { get; set; }
+        public Nullable<int> ProjectID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Area> Areas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Goal> Goals { get; set; }
+        public virtual Graduate Graduate { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

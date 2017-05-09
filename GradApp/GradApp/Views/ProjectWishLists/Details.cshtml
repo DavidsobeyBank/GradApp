@@ -1,0 +1,43 @@
+﻿@model GradApp.Models.ProjectWishList
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectWishList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Moivation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moivation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Graduate.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Graduate.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.ProjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.ProjectName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WishListID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

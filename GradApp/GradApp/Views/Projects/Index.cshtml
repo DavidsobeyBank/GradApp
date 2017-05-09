@@ -16,7 +16,22 @@
             @Html.DisplayNameFor(model => model.ProjectName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Brief)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Skills)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Area.AreaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager.Name)
         </th>
         <th></th>
     </tr>
@@ -27,7 +42,22 @@
             @Html.DisplayFor(modelItem => item.ProjectName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Brief)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Skills)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Area.AreaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manager.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |

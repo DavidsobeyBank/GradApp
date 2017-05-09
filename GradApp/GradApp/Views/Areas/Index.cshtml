@@ -16,7 +16,16 @@
             @Html.DisplayNameFor(model => model.AreaName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AreaLocation)
+            @Html.DisplayNameFor(model => model.AreaBuilding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaFloor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager.Name)
         </th>
         <th></th>
     </tr>
@@ -27,7 +36,16 @@
             @Html.DisplayFor(modelItem => item.AreaName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AreaLocation)
+            @Html.DisplayFor(modelItem => item.AreaBuilding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaFloor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manager.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AreaID }) |
