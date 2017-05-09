@@ -10,5 +10,7 @@ CREATE TABLE [dbo].[Area]
 GO
 ALTER TABLE [dbo].[Area] ADD CONSTRAINT [PK_Area] PRIMARY KEY CLUSTERED  ([AreaID]) ON [PRIMARY]
 GO
+CREATE NONCLUSTERED INDEX [IX_ManagerID] ON [dbo].[Area] ([ManagerID]) ON [PRIMARY]
+GO
 ALTER TABLE [dbo].[Area] ADD CONSTRAINT [FK_ManagerID] FOREIGN KEY ([ManagerID]) REFERENCES [dbo].[Manager] ([ManagerID])
 GO

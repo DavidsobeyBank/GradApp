@@ -5,9 +5,13 @@ CREATE TABLE [dbo].[Rotation]
 [ProjectID] [int] NULL
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[Rotation] ADD CONSTRAINT [PK_GradProj] PRIMARY KEY CLUSTERED  ([RotationID]) ON [PRIMARY]
+ALTER TABLE [dbo].[Rotation] ADD CONSTRAINT [PK_Rotation] PRIMARY KEY CLUSTERED  ([RotationID]) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[Rotation] ADD CONSTRAINT [FK_GradProj_Project] FOREIGN KEY ([ProjectID]) REFERENCES [dbo].[Project] ([ProjectID])
+CREATE NONCLUSTERED INDEX [IX_GraduateID] ON [dbo].[Rotation] ([GraduateID]) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[Rotation] ADD CONSTRAINT [FK_GraduateID] FOREIGN KEY ([GraduateID]) REFERENCES [dbo].[Graduate] ([GraduateID])
+CREATE NONCLUSTERED INDEX [IX_ProjectID] ON [dbo].[Rotation] ([ProjectID]) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Rotation] ADD CONSTRAINT [FK_Rotation_Graduate] FOREIGN KEY ([GraduateID]) REFERENCES [dbo].[Graduate] ([GraduateID])
+GO
+ALTER TABLE [dbo].[Rotation] ADD CONSTRAINT [FK_Rotation_Project] FOREIGN KEY ([ProjectID]) REFERENCES [dbo].[Project] ([ProjectID])
 GO
