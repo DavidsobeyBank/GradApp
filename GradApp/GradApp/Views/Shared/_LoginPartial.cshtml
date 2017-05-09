@@ -3,6 +3,7 @@
     <text>
     <ul class="nav navbar-nav navbar-right">
         <li class="navbar-text">
+            Hello, @User.Identity.Name.Substring(0, User.Identity.Name.IndexOf('.'))!
         </li>
         <li>
             @Html.ActionLink("Sign out", "SignOut", "Account")
