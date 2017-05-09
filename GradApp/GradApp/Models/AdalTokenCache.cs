@@ -23,16 +23,16 @@ namespace GradApp.Models
             this.BeforeAccess = BeforeAccessNotification;
             this.BeforeWrite = BeforeWriteNotification;
             // look up the entry in the database
-            Cache = db.UserTokenCacheList.FirstOrDefault(c => c.webUserUniqueId == userId);
+            Cache = db.UserTokenCacheList.FirstOrDefault(c => c.WebUserUniqueId == userId);
             // place the entry in memory
-            this.Deserialize((Cache == null) ? null : MachineKey.Unprotect(Cache.cacheBits,"ADALCache"));
+            this.Deserialize((Cache == null) ? null : MachineKey.Unprotect(Cache.CacheBits,"ADALCache"));
         }
 
         // clean up the database
         public override void Clear()
         {
             base.Clear();
-            var cacheEntry = db.UserTokenCacheList.FirstOrDefault(c => c.webUserUniqueId == userId);
+            var cacheEntry = db.UserTokenCacheList.FirstOrDefault(c => c.WebUserUniqueId == userId);
             db.UserTokenCacheList.Remove(cacheEntry);
             db.SaveChanges();
         }
@@ -44,13 +44,13 @@ namespace GradApp.Models
             if (Cache == null)
             {
                 // first time access
-                Cache = db.UserTokenCacheList.FirstOrDefault(c => c.webUserUniqueId == userId);
+                Cache = db.UserTokenCacheList.FirstOrDefault(c => c.WebUserUniqueId == userId);
             }
             else
             { 
                 // retrieve last write from the DB
                 var status = from e in db.UserTokenCacheList
-                             where (e.webUserUniqueId == userId)
+                             where (e.WebUserUniqueId == userId)
                 select new
                 {
                     LastWrite = e.LastWrite
@@ -60,10 +60,10 @@ namespace GradApp.Models
                 if (status.First().LastWrite > Cache.LastWrite)
                 {
                     // read from from storage, update in-memory copy
-                    Cache = db.UserTokenCacheList.FirstOrDefault(c => c.webUserUniqueId == userId);
+                    Cache = db.UserTokenCacheList.FirstOrDefault(c => c.WebUserUniqueId == userId);
                 }
             }
-            this.Deserialize((Cache == null) ? null : MachineKey.Unprotect(Cache.cacheBits, "ADALCache"));
+            this.Deserialize((Cache == null) ? null : MachineKey.Unprotect(Cache.CacheBits, "ADALCache"));
         }
 
         // Notification raised after ADAL accessed the cache.
@@ -77,11 +77,11 @@ namespace GradApp.Models
                 {
                     Cache = new UserTokenCache
                     {
-                        webUserUniqueId = userId
+                        WebUserUniqueId = userId
                     };
                 }
 
-                Cache.cacheBits = MachineKey.Protect(this.Serialize(), "ADALCache");
+                Cache.CacheBits = MachineKey.Protect(this.Serialize(), "ADALCache");
                 Cache.LastWrite = DateTime.Now;
 
                 // update the DB and the lastwrite 
