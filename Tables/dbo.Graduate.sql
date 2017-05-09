@@ -4,7 +4,7 @@ CREATE TABLE [dbo].[Graduate]
 [Name] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Surname] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Email] [nchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[PrefferedRole] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PreferredRole] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Degree] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [GraduateYear] [int] NULL
 ) ON [PRIMARY]
