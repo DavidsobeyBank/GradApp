@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradApp", "GradApp\GradApp.csproj", "{788E290B-7114-4400-A500-0871BB632EA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradApp", "GradApp\GradApp.csproj", "{58B37210-5CB7-491A-9255-41B30212DB7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{788E290B-7114-4400-A500-0871BB632EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{788E290B-7114-4400-A500-0871BB632EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{788E290B-7114-4400-A500-0871BB632EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{788E290B-7114-4400-A500-0871BB632EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58B37210-5CB7-491A-9255-41B30212DB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B37210-5CB7-491A-9255-41B30212DB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B37210-5CB7-491A-9255-41B30212DB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B37210-5CB7-491A-9255-41B30212DB7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

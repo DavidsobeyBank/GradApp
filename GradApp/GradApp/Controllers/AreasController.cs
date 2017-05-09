@@ -17,8 +17,7 @@ namespace GradApp.Controllers
         // GET: Areas
         public ActionResult Index()
         {
-            var areas = db.Areas.Include(a => a.Manager);
-            return View(areas.ToList());
+            return View(db.Areas.ToList());
         }
 
         // GET: Areas/Details/5
@@ -39,7 +38,6 @@ namespace GradApp.Controllers
         // GET: Areas/Create
         public ActionResult Create()
         {
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AreaID,AreaName,AreaBuilding,ManagerID,AreaFloor,Comment")] Area area)
+        public ActionResult Create([Bind(Include = "AreaID,AreaName,Comment")] Area area)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace GradApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", area.ManagerID);
             return View(area);
         }
 
@@ -73,7 +70,6 @@ namespace GradApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", area.ManagerID);
             return View(area);
         }
 
@@ -82,7 +78,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AreaID,AreaName,AreaBuilding,ManagerID,AreaFloor,Comment")] Area area)
+        public ActionResult Edit([Bind(Include = "AreaID,AreaName,Comment")] Area area)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace GradApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ManagerID = new SelectList(db.Managers, "ManagerID", "Name", area.ManagerID);
             return View(area);
         }
 

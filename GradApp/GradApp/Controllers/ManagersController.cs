@@ -17,12 +17,15 @@ namespace GradApp.Controllers
         // GET: Managers
         public ActionResult Index()
         {
-            return View(db.Managers.ToList());
+            var managers = db.Managers.Include(m => m.Area);
+            return View(managers.ToList());
         }
 
         // GET: Managers/Details/5
+        //[Authorize(Roles = "AdminRole,AnotherRole")]
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +41,7 @@ namespace GradApp.Controllers
         // GET: Managers/Create
         public ActionResult Create()
         {
+            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName");
             return View();
         }
 
@@ -46,7 +50,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ManagerID,Name,Surname,Email")] Manager manager)
+        public ActionResult Create([Bind(Include = "ManagerID,Name,Surname,Email,Location,AreaID")] Manager manager)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +59,7 @@ namespace GradApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", manager.AreaID);
             return View(manager);
         }
 
@@ -70,6 +75,7 @@ namespace GradApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", manager.AreaID);
             return View(manager);
         }
 
@@ -78,7 +84,7 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ManagerID,Name,Surname,Email")] Manager manager)
+        public ActionResult Edit([Bind(Include = "ManagerID,Name,Surname,Email,Location,AreaID")] Manager manager)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +92,7 @@ namespace GradApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AreaID = new SelectList(db.Areas, "AreaID", "AreaName", manager.AreaID);
             return View(manager);
         }
 

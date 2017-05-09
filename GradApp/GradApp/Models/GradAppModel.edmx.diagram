@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="66d6b2f74ebc48f0bd5c5a9073b34ce1" Name="Diagram1">
-        <EntityTypeShape EntityType="GradAppModel.Area" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+      <Diagram DiagramId="37416425d3b74367b2c0e877a7770212" Name="Diagram1">
+        <EntityTypeShape EntityType="GradAppModel.Area" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GradAppModel.Goal" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GradAppModel.Graduate" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GradAppModel.Manager" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GradAppModel.Manager" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GradAppModel.Project" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GradAppModel.ProjectWishList" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GradAppModel.Rotation" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="GradAppModel.FK_ManagerID" ManuallyRouted="false" />
+        <AssociationConnector Association="GradAppModel.FK_Manager_Area" ManuallyRouted="false" />
         <AssociationConnector Association="GradAppModel.FK_ProJAreaID" ManuallyRouted="false" />
         <AssociationConnector Association="GradAppModel.FK_Goal_Rotation" ManuallyRouted="false" />
         <AssociationConnector Association="GradAppModel.FK_ProjectWishList_Graduate" ManuallyRouted="false" />

@@ -17,17 +17,16 @@ namespace GradApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Area()
         {
+            this.Managers = new HashSet<Manager>();
             this.Projects = new HashSet<Project>();
         }
     
         public int AreaID { get; set; }
         public string AreaName { get; set; }
-        public string AreaBuilding { get; set; }
-        public Nullable<int> ManagerID { get; set; }
-        public string AreaFloor { get; set; }
         public string Comment { get; set; }
     
-        public virtual Manager Manager { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Manager> Managers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Projects { get; set; }
     }

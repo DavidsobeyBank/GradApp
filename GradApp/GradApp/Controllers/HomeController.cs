@@ -11,6 +11,13 @@ namespace GradApp.Controllers
     {
         public ActionResult Index()
         {
+            //if("Manger")
+            //{
+
+            //}
+            //else if("Grad")
+            //{
+            //}
             return View();
         }
 

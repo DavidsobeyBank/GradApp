@@ -11,9 +11,6 @@
           </Key>
           <Property Name="AreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AreaName" Type="varchar" MaxLength="255" />
-          <Property Name="AreaBuilding" Type="varchar" MaxLength="255" />
-          <Property Name="ManagerID" Type="int" />
-          <Property Name="AreaFloor" Type="varchar" MaxLength="255" />
           <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Goal">
@@ -34,7 +31,7 @@
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="Surname" Type="varchar" MaxLength="255" />
           <Property Name="Email" Type="nchar" MaxLength="255" />
-          <Property Name="PrefferedRole" Type="varchar" MaxLength="255" />
+          <Property Name="PreferredRole" Type="varchar" MaxLength="255" />
           <Property Name="Degree" Type="varchar" MaxLength="255" />
           <Property Name="GraduateYear" Type="int" />
         </EntityType>
@@ -46,6 +43,8 @@
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="Surname" Type="varchar" MaxLength="255" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Location" Type="varchar" MaxLength="255" />
+          <Property Name="AreaID" Type="int" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -89,15 +88,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ManagerID">
-          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
-          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+        <Association Name="FK_Manager_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Manager">
-              <PropertyRef Name="ManagerID" />
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
             </Principal>
-            <Dependent Role="Area">
-              <PropertyRef Name="ManagerID" />
+            <Dependent Role="Manager">
+              <PropertyRef Name="AreaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -185,9 +184,9 @@
             <End Role="Rotation" EntitySet="Rotation" />
             <End Role="Goal" EntitySet="Goal" />
           </AssociationSet>
-          <AssociationSet Name="FK_ManagerID" Association="Self.FK_ManagerID">
-            <End Role="Manager" EntitySet="Manager" />
+          <AssociationSet Name="FK_Manager_Area" Association="Self.FK_Manager_Area">
             <End Role="Area" EntitySet="Area" />
+            <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
           <AssociationSet Name="FK_ProJAreaID" Association="Self.FK_ProJAreaID">
             <End Role="Area" EntitySet="Area" />
@@ -225,11 +224,8 @@
           </Key>
           <Property Name="AreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AreaName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="AreaBuilding" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ManagerID" Type="Int32" />
-          <Property Name="AreaFloor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Manager" Relationship="Self.FK_ManagerID" FromRole="Area" ToRole="Manager" />
+          <NavigationProperty Name="Managers" Relationship="Self.FK_Manager_Area" FromRole="Area" ToRole="Manager" />
           <NavigationProperty Name="Projects" Relationship="Self.FK_ProJAreaID" FromRole="Area" ToRole="Project" />
         </EntityType>
         <EntityType Name="Goal">
@@ -251,7 +247,7 @@
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="PrefferedRole" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PreferredRole" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Degree" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="GraduateYear" Type="Int32" />
           <NavigationProperty Name="ProjectWishLists" Relationship="Self.FK_ProjectWishList_Graduate" FromRole="Graduate" ToRole="ProjectWishList" />
@@ -265,7 +261,9 @@
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Areas" Relationship="Self.FK_ManagerID" FromRole="Manager" ToRole="Area" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AreaID" Type="Int32" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Manager_Area" FromRole="Manager" ToRole="Area" />
           <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Manager" FromRole="Manager" ToRole="Project" />
         </EntityType>
         <EntityType Name="Project">
@@ -307,15 +305,15 @@
           <NavigationProperty Name="Graduate" Relationship="Self.FK_Rotation_Graduate" FromRole="Rotation" ToRole="Graduate" />
           <NavigationProperty Name="Project" Relationship="Self.FK_Rotation_Project" FromRole="Rotation" ToRole="Project" />
         </EntityType>
-        <Association Name="FK_ManagerID">
-          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
-          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+        <Association Name="FK_Manager_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Manager">
-              <PropertyRef Name="ManagerID" />
+            <Principal Role="Area">
+              <PropertyRef Name="AreaID" />
             </Principal>
-            <Dependent Role="Area">
-              <PropertyRef Name="ManagerID" />
+            <Dependent Role="Manager">
+              <PropertyRef Name="AreaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -411,9 +409,9 @@
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="ProjectWishLists" EntityType="Self.ProjectWishList" />
           <EntitySet Name="Rotations" EntityType="Self.Rotation" />
-          <AssociationSet Name="FK_ManagerID" Association="Self.FK_ManagerID">
-            <End Role="Manager" EntitySet="Managers" />
+          <AssociationSet Name="FK_Manager_Area" Association="Self.FK_Manager_Area">
             <End Role="Area" EntitySet="Areas" />
+            <End Role="Manager" EntitySet="Managers" />
           </AssociationSet>
           <AssociationSet Name="FK_ProJAreaID" Association="Self.FK_ProJAreaID">
             <End Role="Area" EntitySet="Areas" />
@@ -455,9 +453,6 @@
               <MappingFragment StoreEntitySet="Area">
                 <ScalarProperty Name="AreaID" ColumnName="AreaID" />
                 <ScalarProperty Name="AreaName" ColumnName="AreaName" />
-                <ScalarProperty Name="AreaBuilding" ColumnName="AreaBuilding" />
-                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="AreaFloor" ColumnName="AreaFloor" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -480,7 +475,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PrefferedRole" ColumnName="PrefferedRole" />
+                <ScalarProperty Name="PreferredRole" ColumnName="PreferredRole" />
                 <ScalarProperty Name="Degree" ColumnName="Degree" />
                 <ScalarProperty Name="GraduateYear" ColumnName="GraduateYear" />
               </MappingFragment>
@@ -493,6 +488,8 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

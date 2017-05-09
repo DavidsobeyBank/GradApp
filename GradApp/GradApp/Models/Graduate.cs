@@ -25,7 +25,7 @@ namespace GradApp.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        public string PrefferedRole { get; set; }
+        public string PreferredRole { get; set; }
         public string Degree { get; set; }
         public Nullable<int> GraduateYear { get; set; }
     
