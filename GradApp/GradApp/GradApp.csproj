@@ -236,8 +236,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\GradAppModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GradAppModel.Context.cs</LastGenOutput>
       <DependentUpon>GradAppModel.edmx</DependentUpon>
+      <LastGenOutput>GradAppModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\GradAppModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -293,11 +293,6 @@
     <Content Include="Views\Goals\Details.cshtml" />
     <Content Include="Views\Goals\Edit.cshtml" />
     <Content Include="Views\Goals\Index.cshtml" />
-    <Content Include="Views\Graduates\Create.cshtml" />
-    <Content Include="Views\Graduates\Delete.cshtml" />
-    <Content Include="Views\Graduates\Details.cshtml" />
-    <Content Include="Views\Graduates\Edit.cshtml" />
-    <Content Include="Views\Graduates\Index.cshtml" />
     <Content Include="Views\Managers\Create.cshtml" />
     <Content Include="Views\Managers\Delete.cshtml" />
     <Content Include="Views\Managers\Details.cshtml" />
@@ -318,6 +313,11 @@
     <Content Include="Views\Rotations\Details.cshtml" />
     <Content Include="Views\Rotations\Edit.cshtml" />
     <Content Include="Views\Rotations\Index.cshtml" />
+    <Content Include="Views\Graduates\Create.cshtml" />
+    <Content Include="Views\Graduates\Delete.cshtml" />
+    <Content Include="Views\Graduates\Details.cshtml" />
+    <Content Include="Views\Graduates\Edit.cshtml" />
+    <Content Include="Views\Graduates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

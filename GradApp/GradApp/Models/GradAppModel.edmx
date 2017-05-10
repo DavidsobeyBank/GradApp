@@ -30,7 +30,7 @@
           <Property Name="GraduateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="Surname" Type="varchar" MaxLength="255" />
-          <Property Name="Email" Type="nchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
           <Property Name="PreferredRole" Type="varchar" MaxLength="255" />
           <Property Name="Degree" Type="varchar" MaxLength="255" />
           <Property Name="GraduateYear" Type="int" />
@@ -246,7 +246,7 @@
           <Property Name="GraduateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PreferredRole" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Degree" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="GraduateYear" Type="Int32" />
