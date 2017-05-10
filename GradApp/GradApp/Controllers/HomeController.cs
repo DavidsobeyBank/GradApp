@@ -16,8 +16,22 @@ namespace GradApp.Controllers
         public ActionResult Index()
         {
             LoadRole();
-
-            return View();
+            if(User.IsInRole("Graduate"))
+            {
+                return RedirectToAction("Graduate", "Home");
+            }
+            else if (User.IsInRole("Manager"))
+            {
+                return RedirectToAction("Manager", "Home");
+            }
+            //else if (User.IsInRole("Admin"))
+            //{
+            //    return RedirectToAction("Index", "Admin");
+            //}
+            else
+            {
+                return RedirectToAction("Signup", "Home");
+            }
         }
 
         public ActionResult About()
@@ -27,9 +41,23 @@ namespace GradApp.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Signup()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "SignUp";
+
+            return View();
+        }
+
+        public ActionResult Graduate()
+        {
+            ViewBag.Message = "Graduate Landing Page.";
+
+            return View();
+        }
+        [CustomAuthorize(Roles = "Manager")]
+        public ActionResult Manager()
+        {
+            ViewBag.Message = "Manager Landing Page.";
 
             return View();
         }
@@ -68,6 +96,7 @@ namespace GradApp.Controllers
                     if (!Roles.IsUserInRole(User.Identity.Name, "Graduate"))
                     {
                         Roles.AddUserToRole(User.Identity.Name, "Graduate");
+                        break;
                     }
                 }
             }
@@ -79,10 +108,23 @@ namespace GradApp.Controllers
                     if (!Roles.IsUserInRole(User.Identity.Name, "Manager"))
                     {
                         Roles.AddUserToRole(User.Identity.Name, "Manager");
+                        break;
                     }
                 }
             }
-            if (!Roles.IsUserInRole(User.Identity.Name, "Graduate") || !Roles.IsUserInRole(User.Identity.Name, "Manager") || !Roles.IsUserInRole(User.Identity.Name, "Admin"))
+            //foreach (Admin M in ManagerList)
+            //{
+
+            //    if (User.Identity.Name.Equals(M.Email))
+            //    {
+            //        if (!Roles.IsUserInRole(User.Identity.Name, "Manager"))
+            //        {
+            //            Roles.AddUserToRole(User.Identity.Name, "Manager");
+            //            break;
+            //        }
+            //    }
+            //}
+            if (!User.IsInRole("Graduate") && !User.IsInRole("Manager") && !User.IsInRole("Admin"))
             {
                 Roles.AddUserToRole(User.Identity.Name, "Unassigned");
             }
