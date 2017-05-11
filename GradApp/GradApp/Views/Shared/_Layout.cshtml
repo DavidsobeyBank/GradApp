@@ -1,44 +1,78 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/favicon.ico")" />
+        <link rel="stylesheet" href="~/Content/reset.css"> <!-- CSS reset -->
+        <link rel="stylesheet" href="~/Content/style.css"> <!-- Resource style -->
+        <script src="~/Scripts/modernizr.js"></script> <!-- Modernizr -->
+        <script src="~/Scripts/jquery-2.1.1.js"></script>
+        <script src="~/Scripts/main.js"></script> <!-- Resource jQuery -->
+    </head>
+    <body>
+        @* @Html.ActionLink("Home", "Index", "Home") *@
+        <header class="cd-header">
+            <div id="cd-logo"><a class="navbar-brand" style="max-width:100px" href="~/Home/index"><img src="~/img/Logo.png" alt="Standard Bank"/></a></div>
+            <nav class="cd-primary-nav">
+                <ul>
+                    <li><a href="#0">Logout  <span class="glyphicon glyphicon-off"></span></a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+            </nav> <!-- cd-primary-nav -->
+        </header>
+        <section id="cd-intro">
+            <div id="cd-intro-tagline">
+                @*<h1>Grad App</h1>*@
+            </div> <!-- #cd-intro-tagline -->
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        </section> <!-- #cd-intro -->
+        
+        <div class="cd-secondary-nav">
+            <a href="#0" class="cd-secondary-nav-trigger">Menu<span></span></a> <!-- button visible on small devices -->
+            <nav>
+                <ul>
+                    <li>
+                        <a href="~/Areas/Index">
+                            <b>Areas</b>
+                            <span></span><!-- icon -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Graduates/Index">
+                            <b>Grads</b>
+                            <span></span><!-- icon -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Managers/Index">
+                            <b>Managers</b>
+                            <span></span><!-- icon -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#cd-placeholder-4">
+                            <b>Calendar</b>
+                            <span></span><!-- icon -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#cd-placeholder-5">
+                            <b>Stats</b>
+                            <span></span><!-- icon -->
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div> <!-- .cd-secondary-nav -->
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
