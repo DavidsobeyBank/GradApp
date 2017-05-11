@@ -253,7 +253,6 @@ Intro
     height: 670px;
   }
   #cd-intro #cd-intro-tagline {
-    padding-top: 250px;
   }
 }
 
@@ -399,7 +398,7 @@ Secondary Fixed Navigation
   }
   .cd-secondary-nav li a span {
     position: absolute;
-    display: inline-block;
+    display: block;
     width: 40px;
     height: 40px;
     top: 18px;
@@ -582,4 +581,7 @@ Placeholder Sections
     font-size: 20px;
     font-size: 1.25rem;
   }
+}
+a, a:active, a:focus {
+    outline: none;
 }
