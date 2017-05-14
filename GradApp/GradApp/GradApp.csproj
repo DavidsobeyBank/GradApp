@@ -358,6 +358,8 @@
     <Content Include="Views\Home\Manager.cshtml" />
     <Content Include="Views\Home\Graduate.cshtml" />
     <Content Include="Views\AccessDenied\Index.cshtml" />
+    <Content Include="Views\Areas\Graduate.cshtml" />
+    <Content Include="Views\Areas\Manager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

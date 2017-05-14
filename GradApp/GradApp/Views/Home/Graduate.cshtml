@@ -1,8 +1,63 @@
-﻿
+﻿@model IEnumerable<GradApp.Models.Project>
+
 @{
     ViewBag.Title = "Graduate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Graduate</h2>
+<h2>Graduate Home</h2>
+
+<h1>Current Rotation</h1>
+
+@foreach (var item in Model)
+{
+    if (item.EndDate > DateTime.Now)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName).
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Area.AreaName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </dd>
+
+        </dl><br />
+    }
+}
+
+<h1>Previous Rotation</h1>
+
+@foreach (var item in Model)
+{
+    if (item.EndDate < DateTime.Now)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName).
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Area.AreaName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </dd>
+
+        </dl><br />
+    }
+}
 

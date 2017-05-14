@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Data.Entity;
 
 namespace GradApp.Controllers
 {
@@ -24,10 +25,10 @@ namespace GradApp.Controllers
             {
                 return RedirectToAction("Manager", "Home");
             }
-            //else if (User.IsInRole("Admin"))
-            //{
-            //    return RedirectToAction("Index", "Admin");
-            //}
+            else if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             else
             {
                 return RedirectToAction("Signup", "Home");
@@ -47,12 +48,18 @@ namespace GradApp.Controllers
 
             return View();
         }
-
+        [CustomAuthorize(Roles = "Graduate")]
         public ActionResult Graduate()
         {
             ViewBag.Message = "Graduate Landing Page.";
 
-            return View();
+            var graduate = db.Graduates.Where(g => g.Email == User.Identity.Name).Select(r => r.GraduateID).Single();
+
+            List<Project> RotationList = db.Rotations.Where(r => r.GraduateID == graduate).Select(p => p.Project).ToList();
+
+            //List<Project> ProjectList = db.Projects.Where(p => p.Rotations == User.Identity.Name).Select(r => r.GraduateID);
+
+            return View(RotationList);
         }
         [CustomAuthorize(Roles = "Manager")]
         public ActionResult Manager()
@@ -62,8 +69,7 @@ namespace GradApp.Controllers
             return View();
         }
 
-
-        protected void LoadRole()
+        public void LoadRole()
         {
             if (!Roles.RoleExists("Admin"))
             {
@@ -129,6 +135,5 @@ namespace GradApp.Controllers
                 Roles.AddUserToRole(User.Identity.Name, "Unassigned");
             }
         }
-
     }
 }

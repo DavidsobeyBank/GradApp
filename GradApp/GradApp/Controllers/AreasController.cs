@@ -17,6 +17,22 @@ namespace GradApp.Controllers
         // GET: Areas
         public ActionResult Index()
         {
+            //if (User.IsInRole("Graduate"))
+            //{
+            //    return RedirectToAction("Graduate", "Areas");
+            //}
+            //else if (User.IsInRole("Manager"))
+            //{
+            //    return RedirectToAction("Manager", "Areas");
+            //}
+            //else if (User.IsInRole("Admin"))
+            //{
+            //    return View(db.Areas.ToList());
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Signup", "Home");
+            //}
             return View(db.Areas.ToList());
         }
 
@@ -123,5 +139,21 @@ namespace GradApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //[CustomAuthorize(Roles = "Graduate")]
+        //public ActionResult Graduate()
+        //{
+        //    ViewBag.Message = "Graduate Area Page.";
+
+        //    return View();
+        //}
+
+        //[CustomAuthorize(Roles = "Manager")]
+        //public ActionResult Manager()
+        //{
+        //    ViewBag.Message = "Manager Area Page.";
+
+        //    return View();
+        //}
     }
 }
