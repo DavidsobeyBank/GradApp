@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Data.Entity;
+using System.Net;
 
 namespace GradApp.Controllers
 {
@@ -27,7 +28,7 @@ namespace GradApp.Controllers
             }
             else if (User.IsInRole("Admin"))
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -48,25 +49,42 @@ namespace GradApp.Controllers
 
             return View();
         }
-        [CustomAuthorize(Roles = "Graduate")]
+        //[CustomAuthorize(Roles = "Graduate")]
         public ActionResult Graduate()
         {
             ViewBag.Message = "Graduate Landing Page.";
 
-            var graduate = db.Graduates.Where(g => g.Email == User.Identity.Name).Select(r => r.GraduateID).Single();
+            var graduate = db.Graduates.Where(g => g.Email == /*User.Identity.Name*/ "Jarred.Schultz@standardbank.co.za").Select(r => r.GraduateID).Single();
 
             List<Project> RotationList = db.Rotations.Where(r => r.GraduateID == graduate).Select(p => p.Project).ToList();
 
-            //List<Project> ProjectList = db.Projects.Where(p => p.Rotations == User.Identity.Name).Select(r => r.GraduateID);
-
             return View(RotationList);
         }
-        [CustomAuthorize(Roles = "Manager")]
+        //[CustomAuthorize(Roles = "Manager")]
         public ActionResult Manager()
         {
             ViewBag.Message = "Manager Landing Page.";
 
-            return View();
+            var manager = db.Managers.Where(g => g.Email == /*User.Identity.Name*/ "Nicole.Borges@standardbank.co.za").Select(r => r.ManagerID).Single();
+
+            List<Project> ProjectList = db.Projects.Where(r => r.ManagerID == manager).ToList();
+
+            return View(ProjectList);
+        }
+
+        // GET: Rotation/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Rotation project = db.Rotations.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
         }
 
         public void LoadRole()

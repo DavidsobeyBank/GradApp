@@ -1,0 +1,87 @@
+﻿@model GradApp.Models.Rotation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Current Rotation</h2>
+
+<div>
+    <h1>@Html.DisplayFor(model => model.Project.ProjectName)</h1>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Area.AreaName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Project.Area.AreaName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Manager.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Manager.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Brief)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Brief)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Skills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Skills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.EndDate)
+        </dd>
+
+        <h2>Goals</h2>
+
+        @foreach (var item in Model.Goals.ToList())
+        {
+            <dt>
+                @Html.DisplayNameFor(modelItem => item.GoalName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.GoalName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(modelItem => item.GoalComment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.GoalComment)
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
