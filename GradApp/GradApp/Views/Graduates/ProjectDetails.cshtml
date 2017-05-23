@@ -5,83 +5,137 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Current Rotation</h2>
+<div class="container-fluid">
+    <br />
 
-<div>
-    <h1>@Html.DisplayFor(model => model.Project.ProjectName)</h1>
-    <hr />
-    <dl class="dl-horizontal">
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.Project.Area.AreaName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Project.Area.AreaName)
-        </dd>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Current Rotation</h3>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Project.Manager.Name)
-        </dt>
+    <div class="row">
+        <div class="col-sm-8">
+            <h2>@Html.DisplayFor(model => model.Project.ProjectName)</h2>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Project.Manager.Name)
-        </dd>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Project.Area.AreaName)
+                            </strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            @Html.DisplayFor(model => model.Project.Area.AreaName)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Project.Manager.Name)
+                            </strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            @Html.DisplayFor(model => model.Project.Manager.Name)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Project.Brief)
+                            </strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            @Html.DisplayFor(model => model.Project.Brief)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Project.Skills)
+                            </strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            @Html.DisplayFor(model => model.Project.Skills)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Project.StartDate)
+                            </strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            @Html.DisplayFor(model => model.Project.StartDate)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Project.EndDate)
+                            </strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            @Html.DisplayFor(model => model.Project.Manager.Name)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Project.Brief)
-        </dt>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <h3>Goals</h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Project.Brief)
-        </dd>
+            @foreach (var item in Model.Goals.ToList())
+            {
+                <div class="row">
+                    <div class="col-xs-8 col-sm-8">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                <strong>
+                                    @Html.DisplayNameFor(modelItem => item.GoalName)
+                                </strong>
+                            </div>
+                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                @Html.DisplayFor(modelItem => item.GoalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                <strong>
+                                    @Html.DisplayNameFor(modelItem => item.GoalComment)
+                                </strong>
+                            </div>
+                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                @Html.DisplayFor(modelItem => item.GoalComment)
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Project.Skills)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Project.Skills)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Project.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Project.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Project.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Project.EndDate)
-        </dd>
-
-        <h2>Goals</h2>
-
-        @foreach (var item in Model.Goals.ToList())
-        {
-            <dt>
-                @Html.DisplayNameFor(modelItem => item.GoalName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(modelItem => item.GoalName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(modelItem => item.GoalComment)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(modelItem => item.GoalComment)
-            </dd>
-        }
-
-    </dl>
+                <br />
+            }
+        </div>
+    </div>
 </div>
+        
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

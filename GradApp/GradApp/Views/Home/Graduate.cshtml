@@ -5,81 +5,96 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Graduate Home</h2>
+<div class="container-fluid">
+    <br/>
 
-<h1>Current Rotation</h1>
-@foreach (var item in Model)
-{
-
-    if (item.EndDate > DateTime.Now)
-    {
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(modelItem => item.Area.AreaName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(modelItem => item.ProjectName)
-            </dd>
-
-            <dt>
-                @Html.ActionLink("View", "Details", new { id = item.ProjectID })
-            </dt>
-
-        </dl><br />
-    }
-}
-
-<h1>Previous Rotation</h1>
-
-@foreach (var item in Model)
-{
-    if (item.EndDate < DateTime.Now)
-    {
-        <div class="container">
-
-
-            <div class="panel panel-primary">
-                <div class="col-md-4">
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(modelItem => item.Area.AreaName)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(modelItem => item.ProjectName)
-                        </dd>
-                    </dl>
-                </div>
-                <div class="col-xs-2">
-                    <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
-
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Current Rotation</h3>
         </div>
-            
+    </div>
 
+    <div class="row">
+        <div class="col-sm-8">            
+            @foreach (var item in Model)
+            {
+                if (item.EndDate > DateTime.Now)
+                {
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8">                            
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.ProjectName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 align-items-center text-left">
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
+                        </div>
+                    </div>
+                    <br/>
+                }
+            }                        
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Previous Rotation</h3>
+        </div>
+    </div>
 
-        <br />
-    }
-}
-
-
-
+    <div class="row">
+        <div class="col-sm-8">
+            @foreach (var item in Model)
+            {
+                if (item.EndDate < DateTime.Now)
+                {
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.ProjectName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 align-items-center text-left">
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
+                        </div>
+                    </div>
+                    <br />
+                }
+            }
+        </div>
+    </div>
+</div>
