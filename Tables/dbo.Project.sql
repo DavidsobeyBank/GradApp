@@ -1,13 +1,13 @@
 CREATE TABLE [dbo].[Project]
 (
 [ProjectID] [int] NOT NULL IDENTITY(1, 1),
-[ProjectName] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[AreaID] [int] NULL,
-[ManagerID] [int] NULL,
-[Brief] [varchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[Skills] [varchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[StartDate] [datetime] NULL,
-[EndDate] [datetime] NULL
+[ProjectName] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[AreaID] [int] NOT NULL,
+[ManagerID] [int] NOT NULL,
+[Brief] [varchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[Skills] [varchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[StartDate] [datetime] NOT NULL,
+[EndDate] [datetime] NOT NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[Project] ADD CONSTRAINT [PK_Project] PRIMARY KEY CLUSTERED  ([ProjectID]) ON [PRIMARY]

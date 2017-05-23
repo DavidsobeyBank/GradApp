@@ -1,9 +1,9 @@
 CREATE TABLE [dbo].[ProjectWishList]
 (
 [WishListID] [int] NOT NULL IDENTITY(1, 1),
-[ProjectID] [int] NULL,
-[GraduateID] [int] NULL,
-[Moivation] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[ProjectID] [int] NOT NULL,
+[GraduateID] [int] NOT NULL,
+[Moivation] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[ProjectWishList] ADD CONSTRAINT [PK_ProjectWishList] PRIMARY KEY CLUSTERED  ([WishListID]) ON [PRIMARY]

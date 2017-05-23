@@ -1,8 +1,8 @@
 CREATE TABLE [dbo].[Goal]
 (
 [GoalID] [int] NOT NULL IDENTITY(1, 1),
-[GoalName] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[RotationID] [int] NULL,
+[GoalName] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[RotationID] [int] NOT NULL,
 [GoalComment] [varchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [GoalFeedback] [varchar] (max) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]

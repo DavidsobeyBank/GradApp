@@ -1,8 +1,8 @@
 CREATE TABLE [dbo].[Rotation]
 (
 [RotationID] [int] NOT NULL IDENTITY(1, 1),
-[GraduateID] [int] NULL,
-[ProjectID] [int] NULL
+[GraduateID] [int] NOT NULL,
+[ProjectID] [int] NOT NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[Rotation] ADD CONSTRAINT [PK_Rotation] PRIMARY KEY CLUSTERED  ([RotationID]) ON [PRIMARY]
