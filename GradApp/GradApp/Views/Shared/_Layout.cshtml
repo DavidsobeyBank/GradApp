@@ -2,71 +2,80 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>@ViewBag.Title - My ASP.NET Application</title>
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="~/Scripts/bootstrap-datepicker.js"></script>
+        <script src="~/Scripts/bootstrap-select.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/ct-paper-checkbox.js"></script>
+        <script src="~/Scripts/ct-paper-radio.js"></script>
+        <script src="~/Scripts/ct-paper.js"></script>
+
+        <link href="~/Content/font-awesome.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/ct-paper.css" rel="stylesheet" />
+        <link href="~/Content/demo.css" rel="stylesheet" />
+        <link href="~/Content/examples.css" rel="stylesheet" />
+
         <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/favicon.ico")" />
-        <link rel="stylesheet" href="~/Content/reset.css"> <!-- CSS reset -->
-        <link rel="stylesheet" href="~/Content/style.css"> <!-- Resource style -->
-        <script src="~/Scripts/modernizr.js"></script> <!-- Modernizr -->
-        <script src="~/Scripts/jquery-2.1.1.js"></script>
-        <script src="~/Scripts/main.js"></script> <!-- Resource jQuery -->
     </head>
     <body>
-        @* @Html.ActionLink("Home", "Index", "Home") *@
-        <header class="cd-header">
-            <div id="cd-logo"><a class="navbar-brand" style="max-width:100px" href="~/Home/index"><img src="~/img/Logo.png" alt="Standard Bank"/></a></div>
-            <nav class="cd-primary-nav">
-                <ul>
-                    <li><a href="#0">Logout  <span class="glyphicon glyphicon-off"></span></a></li>
-                </ul>
-            </nav> <!-- cd-primary-nav -->
-        </header>
-        <section id="cd-intro">
-            <div id="cd-intro-tagline">
-                @*<h1>Grad App</h1>*@
-            </div> <!-- #cd-intro-tagline -->
-            <div class="container body-content">
-                @RenderBody()
-                <hr />
-            </div>
-        </section> <!-- #cd-intro -->
-        
-        <div class="cd-secondary-nav">
-            <a href="#0" class="cd-secondary-nav-trigger">Menu<span></span></a> <!-- button visible on small devices -->
-            <nav>
-                <ul>
-                    <li>
-                        <a class="navbar-brand"  onclick="location.replace('/Areas/Index'),'_top'">
-                            <b>Areas</b>
-                            <span></span><!-- icon -->
-                        </a>
-                    </li>
-                    <li>
-                        <a class="navbar-brand" onclick="location.replace('~/Managers/Index'),'_top'" >
-                            <b>Managers</b>
-                            <span></span><!-- icon -->
-                        </a>
-                    </li>
-                    <li>
-                        <a class="navbar-brand"  onclick="location.replace('~/Projects/Index'),'_top'" >
-                            <b>Projects</b>
-                            <span></span><!-- icon -->
-                        </a>
-                    </li>
-                    <li>
-                        <a class="navbar-brand"  onclick="location.replace('~/Graduates/Index'),'_top'" >
-                            <b></b>
-                            <span></span><!-- icon -->
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div> <!-- .cd-secondary-nav -->
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#" style="padding: 3px 10px;">
+                        <img alt="Brand" src="~/img/Logo.png" style="width:40px">
+                    </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <!--                                  You can add classes for different colours on the next element -->
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">Dropdown header</li>
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container body-content" style="padding-top: 60px;">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2017 - WebApplication5</p>
+            </footer>
+        </div>
+
+
     </body>
 </html>

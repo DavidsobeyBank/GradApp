@@ -123,5 +123,19 @@ namespace GradApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ProjectDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Rotation Rotation1 = db.Rotations.Where(r => r.ProjectID == id).First();
+            if (Rotation1 == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Rotation1);
+        }
     }
 }

@@ -54,38 +54,29 @@ namespace GradApp.Controllers
         {
             ViewBag.Message = "Graduate Landing Page.";
 
-            var graduate = db.Graduates.Where(g => g.Email == /*User.Identity.Name*/ "Jarred.Schultz@standardbank.co.za").Select(r => r.GraduateID).Single();
+            var graduate = db.Graduates.Where(g => g.Email == User.Identity.Name).Select(r => r.GraduateID).Single();
 
             List<Project> RotationList = db.Rotations.Where(r => r.GraduateID == graduate).Select(p => p.Project).ToList();
-
             return View(RotationList);
+            //return View();
+            
         }
         //[CustomAuthorize(Roles = "Manager")]
         public ActionResult Manager()
         {
             ViewBag.Message = "Manager Landing Page.";
 
-            var manager = db.Managers.Where(g => g.Email == /*User.Identity.Name*/ "Nicole.Borges@standardbank.co.za").Select(r => r.ManagerID).Single();
+            //var manager = db.Managers.Where(g => g.Email == User.Identity.Name).Select(r => r.ManagerID).Single();
 
-            List<Project> ProjectList = db.Projects.Where(r => r.ManagerID == manager).ToList();
+            //List<Project> ProjectList = db.Projects.Where(r => r.ManagerID == manager).ToList();
 
-            return View(ProjectList);
+            return View();
+            //ProjectList
+
         }
 
         // GET: Rotation/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Rotation project = db.Rotations.Find(id);
-            if (project == null)
-            {
-                return HttpNotFound();
-            }
-            return View(project);
-        }
+        
 
         public void LoadRole()
         {
@@ -150,7 +141,15 @@ namespace GradApp.Controllers
             //}
             if (!User.IsInRole("Graduate") && !User.IsInRole("Manager") && !User.IsInRole("Admin"))
             {
-                Roles.AddUserToRole(User.Identity.Name, "Unassigned");
+                try
+                {
+                    Roles.AddUserToRole(User.Identity.Name, "Unassigned");
+
+                }
+                catch(Exception)
+                {
+
+                }
             }
         }
     }

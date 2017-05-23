@@ -44,28 +44,42 @@
 {
     if (item.EndDate < DateTime.Now)
     {
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
-            </dt>
+        <div class="container">
 
-            <dd>
-                @Html.DisplayFor(modelItem => item.Area.AreaName)
-            </dd>
 
-            <dt>
-                @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
-            </dt>
+            <div class="panel panel-primary">
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
+                        </dt>
 
-            <dd>
-                @Html.DisplayFor(modelItem => item.ProjectName)
-            </dd>
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Area.AreaName)
+                        </dd>
 
-            <dt>
-                @Html.ActionLink("View", "Details", new { id = item.ProjectID })
-            </dt>
+                        <dt>
+                            @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
+                        </dt>
 
-        </dl><br />
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.ProjectName)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-xs-2">
+                    <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
+
+                </div>
+            </div>
+        </div>
+            
+
+
+
+        <br />
     }
 }
+
+
 
