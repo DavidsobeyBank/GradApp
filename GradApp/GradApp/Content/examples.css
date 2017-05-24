@@ -145,3 +145,25 @@
 
 .alert h5 {
   margin-bottom: 10px; }
+
+.btn {
+    padding: 5px 7px;
+}
+.navbar > .container-fluid .navbar-brand {
+    margin-left: 0px;
+}
+.navbar .navbar-brand {
+    margin: 5px 0px;
+}
+.navbar-nav {
+    margin: 10px -15px;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #0092ff;
+}
+#logo{
+    content: url(../img/LogoBW.png)
+}

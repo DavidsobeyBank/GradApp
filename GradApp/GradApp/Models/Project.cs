@@ -36,5 +36,20 @@ namespace GradApp.Models
         public virtual ICollection<ProjectWishList> ProjectWishLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rotation> Rotations { get; set; }
+        public string ReturnBeginDate
+        {
+            get
+            {
+                return this.StartDate.Value.ToString("d");
+            }
+        }
+
+        public string ReturnEndDate
+        {
+            get
+            {
+                return this.EndDate.Value.ToString("d");
+            }
+        }
     }
 }

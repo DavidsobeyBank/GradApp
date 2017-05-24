@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-sm-8">
-            <h2>@Html.DisplayFor(model => model.Project.ProjectName)</h2>
+            <h3>Rotation - @Html.DisplayFor(model => model.Project.ProjectName)</h3>
         </div>
     </div>
 
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.Area.AreaName)
+                                Area
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
@@ -37,11 +37,12 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.Manager.Name)
+                                Manager
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.Manager.Name)
+                            @Html.DisplayFor(model => model.Project.Manager.Name)<text>&nbsp;</text>@Html.DisplayFor(model => model.Project.Manager.Surname)
+
                         </div>
                     </div>
                     <div class="row">
@@ -67,21 +68,21 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.StartDate)
+                                Begin
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.StartDate)
+                            @Html.DisplayFor(model => model.Project.ReturnBeginDate)
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.EndDate)
+                                End
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.Manager.Name)
+                            @Html.DisplayFor(model => model.Project.ReturnEndDate)
                         </div>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                                 <strong>
-                                    @Html.DisplayNameFor(modelItem => item.GoalName)
+                                    Goal
                                 </strong>
                             </div>
                             <div class="col-xs-6 col-sm-7 align-items-center text-left">
@@ -120,7 +121,7 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                                 <strong>
-                                    @Html.DisplayNameFor(modelItem => item.GoalComment)
+                                    Comment
                                 </strong>
                             </div>
                             <div class="col-xs-6 col-sm-7 align-items-center text-left">
@@ -137,5 +138,5 @@
 </div>
         
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Graduate","Home",null,null)" class="btn btn-info" role="button">Back to List</a>
 </p>

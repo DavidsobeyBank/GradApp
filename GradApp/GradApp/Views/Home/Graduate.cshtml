@@ -25,7 +25,7 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                                     <strong>
-                                        @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
+                                        Project
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                                     <strong>
-                                        @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
+                                        Area
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
@@ -70,7 +70,7 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                                     <strong>
-                                        @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
+                                        Project
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
@@ -80,11 +80,21 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                                     <strong>
-                                        @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName)
+                                        Area
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
                                     @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Manager
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.Manager.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => item.Manager.Surname)
                                 </div>
                             </div>
                         </div>
