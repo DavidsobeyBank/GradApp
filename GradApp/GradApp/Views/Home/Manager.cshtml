@@ -1,15 +1,131 @@
-﻿@model IEnumerable<GradApp.Models.Project>
+﻿@model IEnumerable<GradApp.Models.Rotation>
 
 @{
     ViewBag.Title = "Manager";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Manager Home</h2>
+<div class="container-fluid">
+    <br />
 
-<h3>Your Areas</h3>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Current Project</h3>
+        </div>
+    </div>
 
-@try
+    <div class="row">
+        <div class="col-sm-8">
+            @{bool empty = true;}
+
+            @foreach (var item in Model)
+            {
+                if (item.EndDate > DateTime.Now)
+                {
+                    empty = false;
+
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Project
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.ProjectName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Area
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 align-items-center text-left">
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
+                        </div>
+                    </div>
+                    <br />
+                }
+
+                if (empty)
+                {
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right">
+                            No current projects to display
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Previous Project</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            @{empty = true;}
+
+            @foreach (var item in Model)
+            {
+                if (item.EndDate < DateTime.Now)
+                {   
+                    empty = false;
+
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Project
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.ProjectName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Area
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-xs-4 col-sm-4 align-items-center text-left">
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
+                        </div>
+                    </div>
+                    <br />
+                }
+
+                if (empty)
+                {
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-5 align-items-center text-right">
+                            No previous projects to display
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@*@try
 {
     foreach (var item in Model)
     {
@@ -36,9 +152,9 @@
 catch(Exception)
 {
 
-}
+}*@
 
-<h1>Previous Projects</h1>
+@*<h1>Previous Projects</h1>
 
 @try
 {
@@ -47,20 +163,16 @@ catch(Exception)
         if (item.EndDate < DateTime.Now)
         {
         <dl class="dl-horizontal">
-            @*<dt>
+            <dt>
                 @Html.DisplayNameFor(modelItem => modelItem.Area.AreaName).
             </dt>
 
             <dd>
                 @Html.DisplayFor(modelItem => item.Area.AreaName)
-            </dd>*@
+            </dd>
 
             <dt>
-                @Html.DisplayNameFor(modelItem => modelItem.ProjectName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(modelItem => item.ProjectName)
+                
             </dd>
 
         </dl><br />
@@ -70,5 +182,5 @@ catch(Exception)
 catch(Exception)
 {
 
-}
+}*@
 

@@ -66,11 +66,11 @@ namespace GradApp.Controllers
         {
             ViewBag.Message = "Manager Landing Page.";
 
-            //var manager = db.Managers.Where(g => g.Email == User.Identity.Name).Select(r => r.ManagerID).Single();
+            var manager = db.Managers.Where(g => g.Email == /*User.Identity.Name*/"Nicole.Borges@standardbank.co.za").Select(r => r.ManagerID).Single();
 
-            //List<Project> ProjectList = db.Projects.Where(r => r.ManagerID == manager).ToList();
+            List<Project> ProjectList = db.Projects.Where(r => r.ManagerID == manager).ToList();
 
-            return View();
+            return View(ProjectList);
             //ProjectList
 
         }
@@ -105,7 +105,6 @@ namespace GradApp.Controllers
 
             foreach (Graduate G in GraduateList)
             {
-
                 if (User.Identity.Name.Equals(G.Email, StringComparison.InvariantCultureIgnoreCase))
                 {
                     if (!Roles.IsUserInRole(User.Identity.Name, "Graduate"))
@@ -117,7 +116,6 @@ namespace GradApp.Controllers
             }
             foreach (Manager M in ManagerList)
             {
-
                 if (User.Identity.Name.Equals(M.Email))
                 {
                     if (!Roles.IsUserInRole(User.Identity.Name, "Manager"))
