@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GradApp.Models.Rotation>
+﻿@model IEnumerable<GradApp.ViewModels.ManagerProjectViewModel>
 
 @{
     ViewBag.Title = "Manager";
@@ -16,11 +16,12 @@
 
     <div class="row">
         <div class="col-sm-8">
+
             @{bool empty = true;}
 
             @foreach (var item in Model)
             {
-                if (item.EndDate > DateTime.Now)
+                if (@item.project.EndDate > DateTime.Now)
                 {
                     empty = false;
 
@@ -33,7 +34,7 @@
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                    @Html.DisplayFor(modelItem => item.ProjectName)
+                                    @Html.DisplayFor(modelItem => @item.project.ProjectName)
                                 </div>
                             </div>
                             <div class="row">
@@ -43,25 +44,37 @@
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                    @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                    @Html.DisplayFor(modelItem => @item.project.Area.AreaName)
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Graduate
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @foreach (var grad in @item.graduates)
+                                    {
+                                        @Html.DisplayFor(modelItem => @grad.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => @grad.Surname)<br/>
+}
+                                </div>
+                            </div> 
                         </div>
                         <div class="col-xs-4 col-sm-4 align-items-center text-left">
-                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = @item.project.ProjectID })"></a>
                         </div>
                     </div>
                     <br />
                 }
-
-                if (empty)
-                {
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right">
-                            No current projects to display
-                        </div>
-                    </div>
-                }
+            }
+            @if (empty)
+            {
+            <div class="row">
+                <div class="col-xs-6 col-sm-5 align-items-center text-right">
+                    No current projects to display
+                </div>
+            </div>
             }
         </div>
     </div>
@@ -78,7 +91,7 @@
 
             @foreach (var item in Model)
             {
-                if (item.EndDate < DateTime.Now)
+                if (@item.project.EndDate < DateTime.Now)
                 {   
                     empty = false;
 
@@ -91,7 +104,7 @@
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                    @Html.DisplayFor(modelItem => item.ProjectName)
+                                    @Html.DisplayFor(modelItem => @item.project.ProjectName)
                                 </div>
                             </div>
                             <div class="row">
@@ -101,25 +114,38 @@
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                    @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                    @Html.DisplayFor(modelItem => @item.project.Area.AreaName)
                                 </div>
-                            </div>                            
+                            </div> 
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Graduate
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+@foreach (var grad in @item.graduates)
+{
+                                    @Html.DisplayFor(modelItem => @grad.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => @grad.Surname)
+}
+                                </div>
+                            </div>                           
                         </div>
                         <div class="col-xs-4 col-sm-4 align-items-center text-left">
-                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = item.ProjectID })"></a>
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = @item.project.ProjectID })"></a>
                         </div>
                     </div>
                     <br />
                 }
+            }
 
-                if (empty)
-                {
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right">
-                            No previous projects to display
-                        </div>
+            @if (empty)
+            {
+                <div class="row">
+                    <div class="col-xs-6 col-sm-5 align-items-center text-right">
+                        No previous projects to display
                     </div>
-                }
+                </div>
             }
         </div>
     </div>

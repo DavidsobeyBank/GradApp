@@ -63,16 +63,16 @@
                     </div>
                     <br/>
                 }
-
-                if (empty)
-                {
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right">
-                            No current rotations to display
-                        </div>
+            }    
+            
+            @if (empty)
+            {
+                <div class="row">
+                    <div class="col-xs-6 col-sm-5 align-items-center text-right">
+                        No current rotations to display
                     </div>
-                }
-            }                        
+                </div>
+            }                    
         </div>
     </div>
 
@@ -131,15 +131,15 @@
                     </div>
                     <br />
                 }
+            }
 
-                if (empty)
-                {
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right">
-                            No previous rotations to display
-                        </div>
+            @if (empty)
+            {
+                <div class="row">
+                    <div class="col-xs-6 col-sm-5 align-items-center text-right">
+                        No previous rotations to display
                     </div>
-                }
+                </div>
             }
         </div>
     </div>
