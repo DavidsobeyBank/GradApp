@@ -32,11 +32,13 @@ namespace GradApp.Controllers
                         ManagerProjectViewModelList[index].graduates.Add(item.Rotation.Graduate);
                     }
                 }
-
-                mpVM.project = item.Rotation.Project;
-                mpVM.graduates = new List<Graduate>();
-                mpVM.graduates.Add(item.Rotation.Graduate);
-                ManagerProjectViewModelList.Add(mpVM);
+                else
+                {
+                    mpVM.project = item.Rotation.Project;
+                    mpVM.graduates = new List<Graduate>();
+                    mpVM.graduates.Add(item.Rotation.Graduate);
+                    ManagerProjectViewModelList.Add(mpVM);
+                }
             }            
 
             return View("~/Views/Home/Manager.cshtml",ManagerProjectViewModelList);

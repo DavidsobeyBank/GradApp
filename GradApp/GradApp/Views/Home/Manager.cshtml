@@ -57,12 +57,12 @@
                                     @foreach (var grad in @item.graduates)
                                     {
                                         @Html.DisplayFor(modelItem => @grad.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => @grad.Surname)<br/>
-}
+                                    }
                                 </div>
                             </div> 
                         </div>
                         <div class="col-xs-4 col-sm-4 align-items-center text-left">
-                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = @item.project.ProjectID })"></a>
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Managers", new { id = @item.project.ProjectID })"></a>
                         </div>
                     </div>
                     <br />
@@ -124,15 +124,15 @@
                                     </strong>
                                 </div>
                                 <div class="col-xs-6 col-sm-7 align-items-center text-left">
-@foreach (var grad in @item.graduates)
-{
-                                    @Html.DisplayFor(modelItem => @grad.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => @grad.Surname)
-}
+                                    @foreach (var grad in @item.graduates)
+                                    {
+                                       @Html.DisplayFor(modelItem => @grad.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => @grad.Surname)
+                                    }
                                 </div>
                             </div>                           
                         </div>
                         <div class="col-xs-4 col-sm-4 align-items-center text-left">
-                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Graduates", new { id = @item.project.ProjectID })"></a>
+                            <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("ProjectDetails", "Managers", new { id = @item.project.ProjectID })"></a>
                         </div>
                     </div>
                     <br />

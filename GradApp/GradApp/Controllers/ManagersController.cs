@@ -166,6 +166,20 @@ namespace GradApp.Controllers
             return View(managers.ToList());
         }
 
+        public ActionResult ProjectDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Rotation Rotation1 = db.Rotations.Where(r => r.ProjectID == id).First();
+            if (Rotation1 == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Rotation1);
+        }
+
         public void LoadRole()
         {
             if (!Roles.RoleExists("Admin"))
