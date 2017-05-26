@@ -24,14 +24,14 @@ namespace GradApp.Controllers
             {
                 ManagerProjectViewModel mpVM = new ManagerProjectViewModel();
 
-                if (ManagerProjectViewModelList.Count() > 0)
-                {
+                //if (ManagerProjectViewModelList.Count() > 0)
+                //{
                     var index = ManagerProjectViewModelList.FindIndex(s => s.project.ProjectID == item.Rotation.ProjectID) ;
                     if (index > 0)
                     {
                         ManagerProjectViewModelList[index].graduates.Add(item.Rotation.Graduate);
                     }
-                }
+                //}
                 else
                 {
                     mpVM.project = item.Rotation.Project;
