@@ -48,7 +48,7 @@ namespace GradApp.Models
         {
             get
             {
-                return this.EndDate.Value.ToString("d");
+                return this.EndDate.Value.ToString("d") ?? "No date set";
             }
         }
     }

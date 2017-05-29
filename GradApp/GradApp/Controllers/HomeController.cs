@@ -66,18 +66,9 @@ namespace GradApp.Controllers
         {
             ViewBag.Message = "Manager Landing Page.";
 
-            //var manager = db.Managers.Where(g => g.Email == /*User.Identity.Name*/"Nicole.Borges@standardbank.co.za").Select(r => r.ManagerID).Single();
-
-            //List<Project> ProjectList = db.Projects.Where(r => r.ManagerID == manager).ToList();
-
-            //return View(ProjectList);
-
             return RedirectToAction("Manager", "ManagerProjectViewModel");
 
-        }
-
-        // GET: Rotation/Details/5
-        
+        }       
 
         public void LoadRole()
         {
