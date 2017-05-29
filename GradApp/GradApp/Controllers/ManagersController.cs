@@ -172,12 +172,12 @@ namespace GradApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rotation Rotation1 = db.Rotations.Where(r => r.ProjectID == id).First();
-            if (Rotation1 == null)
+            List<Rotation> Rotation = db.Rotations.Where(r => r.ProjectID == id).ToList();
+            if (Rotation == null)
             {
                 return HttpNotFound();
             }
-            return View(Rotation1);
+            return View(Rotation);
         }
 
         public void LoadRole()

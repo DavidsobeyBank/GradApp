@@ -1,4 +1,4 @@
-﻿@model GradApp.Models.Rotation
+﻿@model IEnumerable<GradApp.Models.Rotation>
 
 @{
     ViewBag.Title = "Details";
@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-sm-8">
-            @if (Model.Project.EndDate > DateTime.Now)
+            @if (Model.First().Project.EndDate > DateTime.Now)
             {
                 <h3>Current</h3>
             }
@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="col-sm-8">
-            <h3>Project - @Html.DisplayFor(model => model.Project.ProjectName)</h3>
+            <h3>Project - @Html.DisplayFor(model => model.First().Project.ProjectName)</h3>
         </div>
     </div>
 
@@ -39,28 +39,30 @@
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Graduate.Name)<text>&nbsp;</text>@Html.DisplayFor(model => model.Graduate.Surname)
-
+                            @foreach (var item in Model)
+                            {
+                                @Html.DisplayFor(modelItem => @item.Graduate.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => @item.Graduate.Surname)<br/>
+                            }
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.Brief)
+                                @Html.DisplayNameFor(model => model.First().Project.Brief)
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.Brief)
+                            @Html.DisplayFor(model => model.First().Project.Brief)
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-5 align-items-center text-right ">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.Skills)
+                                @Html.DisplayNameFor(model => model.First().Project.Skills)
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.Skills)
+                            @Html.DisplayFor(model => model.First().Project.Skills)
                         </div>
                     </div>
                     <div class="row">
@@ -70,7 +72,7 @@
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.Area.AreaName)
+                            @Html.DisplayFor(model => model.First().Project.Area.AreaName)
                         </div>
                     </div>
                     <div class="row">
@@ -80,7 +82,7 @@
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.ReturnBeginDate)
+                            @Html.DisplayFor(model => model.First().Project.ReturnBeginDate)
                         </div>
                     </div>
                     <div class="row">
@@ -90,7 +92,7 @@
                             </strong>
                         </div>
                         <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                            @Html.DisplayFor(model => model.Project.ReturnEndDate)
+                            @Html.DisplayFor(model => model.First().Project.ReturnEndDate)
                         </div>
                     </div>
                 </div>
@@ -112,30 +114,44 @@
                 </div>
             </div>
 
-            @foreach (var item in Model.Goals)
+            @foreach (var item in Model)
             {
                 <div class="row">
-                    <div class="col-xs-8 col-sm-8">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Goal
-                                </strong>
+                    <div class="col-xs-8 col-sm-8">  
+                        @if (Model.Count() > 1)
+                        {
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 align-items-center text-right ">
+                                    @Html.DisplayFor(modelItem => @item.Graduate.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => @item.Graduate.Surname)
+                                </div>
+                                <div class="col-xs-6 col-sm-6 align-items-center text-left">
+                                </div>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.GoalName)
+                        }
+                        
+                        @foreach (var goal in @item.Goals)
+                        {
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Goal
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => goal.GoalName)
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Comment
-                                </strong>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Comment
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => goal.GoalComment)
+                                </div>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.GoalComment)
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
 
