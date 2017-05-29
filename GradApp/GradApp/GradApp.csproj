@@ -241,7 +241,6 @@
     <Compile Include="Models\Manager.cs">
       <DependentUpon>GradAppModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ManagerProjectViewModel.cs" />
     <Compile Include="Models\Project.cs">
       <DependentUpon>GradAppModel.tt</DependentUpon>
     </Compile>
