@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h3>Details</h3>
 
 <div>
     <h4>Area</h4>
@@ -30,6 +30,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AreaID }) |
+    @if (!Roles.IsUserInRole(User.Identity.Name, "Graduate"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AreaID }) @:|
+         
+    }
+
+    @Html.ActionLink("View Projects", "GradProject", "Projects", new { id = Model.AreaID }))
     @Html.ActionLink("Back to List", "Index")
 </p>

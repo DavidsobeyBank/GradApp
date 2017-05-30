@@ -35,8 +35,10 @@ namespace GradApp.Controllers
                 else
                 {
                     mpVM.project = item.Rotation.Project;
-                    mpVM.graduates = new List<Graduate>();
-                    mpVM.graduates.Add(item.Rotation.Graduate);
+                    mpVM.graduates = new List<Graduate>
+                    {
+                        item.Rotation.Graduate
+                    };
                     ManagerProjectViewModelList.Add(mpVM);
                 }
             }            

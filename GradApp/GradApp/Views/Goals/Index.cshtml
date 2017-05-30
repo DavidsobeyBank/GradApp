@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h3>Index</h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -22,7 +22,7 @@
             @Html.DisplayNameFor(model => model.GoalFeedback)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Rotation.RotationID)
+            @Html.DisplayNameFor(model => model.Rotation.Project.ProjectName)
         </th>
         <th></th>
     </tr>
@@ -39,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.GoalFeedback)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Rotation.RotationID)
+            @Html.DisplayFor(modelItem => item.Rotation.Project.ProjectName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GoalID }) |

@@ -16,6 +16,11 @@
         <script src="~/Scripts/ct-paper-checkbox.js"></script>
         <script src="~/Scripts/ct-paper-radio.js"></script>
         <script src="~/Scripts/ct-paper.js"></script>
+        <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
         <link href="~/Content/font-awesome.css" rel="stylesheet" />
         <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -27,38 +32,38 @@
         <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/favicon.ico")" />
     </head>
     <body>
+        <div class="navbar">
+            <nav class="navbar navbar-inverse navbar-fixed-top" style="height:80px">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="~/Home/" style="padding: 10px 8px;">
+                            <img alt="Brand" src="~/img/LogoBW.png" id="logo" style="width:40px">
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" style="height:80px">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="~/Home/" style="padding: 0px 8px;">
-                        <img alt="Brand" src="~/img/LogoBW.png" id="logo" style="width:60px">
-                    </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
+                        </a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="~/Areas/">Rotation Areas</a></li>
+                            <li><a href="~/Goals/">Goals</a></li>
 
-        <div class="container body-content" style="padding-top: 60px;">
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        
+
+        <div class="container-fluid body-content" style="margin-top: 50px;">
             @RenderBody()
-            <hr />
-            <footer class="navbar navbar-fixed-bottom">
-                <p>&copy; 2017 - WebApplication5</p>
-            </footer>
+            
         </div>
         
 

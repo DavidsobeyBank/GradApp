@@ -132,5 +132,19 @@ namespace GradApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult GradProject(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Project> project = db.Projects.Where(r => r.AreaID == id).ToList();
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
     }
 }
