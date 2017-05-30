@@ -164,21 +164,7 @@ namespace GradApp.Controllers
         {
             var managers = db.Managers.Include(m => m.Area);
             return View(managers.ToList());
-        }
-
-        public ActionResult ProjectDetails(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            List<Rotation> Rotation = db.Rotations.Where(r => r.ProjectID == id).ToList();
-            if (Rotation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(Rotation);
-        }
+        }        
 
         public void LoadRole()
         {

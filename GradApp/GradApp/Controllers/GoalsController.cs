@@ -128,5 +128,33 @@ namespace GradApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Graduate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Goal goal = db.Goals.Where(r => r.GoalID == id).First();
+            if (goal == null)
+            {
+                return HttpNotFound();
+            }
+            return View(goal);
+        }
+
+        public ActionResult Manager(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Goal goal = db.Goals.Where(r => r.GoalID == id).First();
+            if (goal == null)
+            {
+                return HttpNotFound();
+            }
+            return View(goal);
+        }
     }
 }

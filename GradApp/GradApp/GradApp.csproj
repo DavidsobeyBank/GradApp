@@ -364,7 +364,7 @@
     <Content Include="Views\Areas\Graduate.cshtml" />
     <Content Include="Views\Areas\Manager.cshtml" />
     <Content Include="Views\Managers\Graduate.cshtml" />
-    <Content Include="Views\Graduates\ProjectDetails.cshtml" />
+    <Content Include="Views\Projects\Graduate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -390,10 +390,16 @@
     <Content Include="Content\ct-paper.css.map" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Managers\ProjectDetails.cshtml" />
+    <Content Include="Views\Projects\Manager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Rotations\Graduate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Goals\Graduate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Goals\Manager.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
