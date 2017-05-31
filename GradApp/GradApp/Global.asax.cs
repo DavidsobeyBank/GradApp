@@ -25,6 +25,8 @@ namespace GradApp
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimsIdentity.DefaultNameClaimType;
         }
 
+
         
+
     }
 }

@@ -17,7 +17,7 @@ namespace GradApp.Controllers
 
         public ActionResult Index()
         {
-            LoadRole();
+            
             if(User.IsInRole("Graduate"))
             {
                 return RedirectToAction("Graduate", "Home");
@@ -38,6 +38,25 @@ namespace GradApp.Controllers
 
         public ActionResult About()
         {
+            try
+            {
+                if (User.IsInRole("Graduate"))
+                {
+                    Roles.RemoveUserFromRole(User.Identity.Name, "Graduate");
+                    if(!User.IsInRole("Manager"))
+                    Roles.AddUserToRole(User.Identity.Name, "Manager");
+                }
+                else if (User.IsInRole("Manager"))
+                {
+                    Roles.RemoveUserFromRole(User.Identity.Name, "Manager");
+                    if (!User.IsInRole("Graduate"))
+                    Roles.AddUserToRole(User.Identity.Name, "Graduate");
+                }
+            }
+            catch(Exception e)
+            { }
+            
+
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -68,8 +87,15 @@ namespace GradApp.Controllers
 
             return RedirectToAction("Manager", "ManagerProjectViewModel");
 
-        }       
+        }
 
+
+        public ActionResult Login()
+        {
+            LoadRole();
+            return RedirectToAction("Index", "Home");
+
+        }
         public void LoadRole()
         {
             if (!Roles.RoleExists("Admin"))
@@ -142,5 +168,6 @@ namespace GradApp.Controllers
                 }
             }
         }
+
     }
 }
