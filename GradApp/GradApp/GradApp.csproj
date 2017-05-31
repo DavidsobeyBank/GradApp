@@ -241,7 +241,6 @@
     <Compile Include="Models\Manager.cs">
       <DependentUpon>GradAppModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ManagerProjectViewModel.cs" />
     <Compile Include="Models\Project.cs">
       <DependentUpon>GradAppModel.tt</DependentUpon>
     </Compile>
@@ -253,6 +252,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ManagerProjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -406,6 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Areas\GradIndex.cshtml" />
+    <Content Include="Views\Rotations\Graduate.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

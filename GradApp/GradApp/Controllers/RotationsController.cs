@@ -132,5 +132,15 @@ namespace GradApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //[CustomAuthorize(Roles = "Graduate")]
+        public ActionResult Graduate()
+        {
+            ViewBag.Message = "Graduate Landing Page.";
+
+            List<Project> ProjectList = db.Projects.Where(p => p.Rotations.Count == 0).Include(a => a.Area).OrderBy(a => a.Area.AreaName).ToList();
+
+            return View(ProjectList);
+        }
     }
 }

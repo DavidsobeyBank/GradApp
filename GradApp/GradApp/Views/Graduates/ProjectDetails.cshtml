@@ -6,7 +6,7 @@
 }
 
 <div class="container-fluid">
-     
+
 
     <div class="row">
         <div class="col-sm-8">
@@ -121,7 +121,7 @@
                                     Goal
                                 </strong>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            <div class="col-xs-5 col-sm-5 align-items-center text-left">
                                 @Html.DisplayFor(modelItem => item.GoalName)
                             </div>
                         </div>
@@ -131,19 +131,20 @@
                                     Comment
                                 </strong>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            <div class="col-xs-5 col-sm-5 align-items-center text-left">
                                 @Html.DisplayFor(modelItem => item.GoalComment)
                             </div>
                         </div>
                     </div>
+                    <div class="col-xs-1 col-sm-2 align-items-center text-left">
+                        <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("Details", "Goals", new { id = item.GoalID })"></a>
+                    </div>
                 </div>
-
-                 
             }
         </div>
     </div>
 </div>
-        
+
 <p>
     <a href="@Url.Action("Graduate","Home",null,null)" class="btn btn-info" role="button">Back to List</a>
 </p>
