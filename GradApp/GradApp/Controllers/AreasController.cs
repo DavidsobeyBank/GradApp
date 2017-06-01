@@ -141,19 +141,19 @@ namespace GradApp.Controllers
         }
 
         //[CustomAuthorize(Roles = "Graduate")]
-        //public ActionResult Graduate()
-        //{
-        //    ViewBag.Message = "Graduate Area Page.";
+        public ActionResult Graduate()
+        {
+            ViewBag.Message = "Graduate Area Page.";
 
-        //    return View();
-        //}
+            return View(db.Areas.Include("Managers").ToList());
+        }
 
         //[CustomAuthorize(Roles = "Manager")]
-        //public ActionResult Manager()
-        //{
-        //    ViewBag.Message = "Manager Area Page.";
+        public ActionResult Manager()
+        {
+            ViewBag.Message = "Manager Area Page.";
 
-        //    return View();
-        //}
+            return View(db.Areas.ToList());
+        }
     }
 }

@@ -47,9 +47,10 @@
                         <ul class="nav navbar-nav">
                             @if (User.IsInRole("Graduate"))
                             {
-                                <li><a href="~/Areas/">View Areas</a></li>
-                                <li><a href="~/Projects/">View Projects</a></li>
-
+                                <li><a href="~/Home/Graduate">My Dashboard</a></li>
+                                <li><a href="~/Areas/Graduate">View Areas</a></li>
+                                <li><a href="~/Rotations/Graduate">View Projects</a></li>
+                                <li><a href="~/Managers/Graduate">View Managers</a></li>
                             }
                             @if (User.IsInRole("Manager"))
                             {
@@ -57,7 +58,6 @@
                                 <li><a href="#">Create Projects</a></li>
                                 <li><a href="#">View Graduates</a></li>
                                 <li><a href="#">Graduate Applications</a></li>
-
                             }
                         </ul>
                     </div><!-- /.navbar-collapse -->

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GradApp.Models;
+using Newtonsoft.Json;
 
 namespace GradApp.Controllers
 {
@@ -159,6 +160,26 @@ namespace GradApp.Controllers
                 return HttpNotFound();
             }
             return View(Rotation);
+        }
+
+        public ActionResult getManagersByAreaID(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Manager> Managers = db.Managers.Where(m => m.AreaID == id).ToList();
+            if (Managers == null)
+            {
+                return HttpNotFound();
+            }
+
+            var result = JsonConvert.SerializeObject(Managers, Formatting.Indented,
+                       new JsonSerializerSettings
+                       {
+                           ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                       });
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
