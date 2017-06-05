@@ -153,11 +153,9 @@
     margin-left: 0;
 }
 .navbar .navbar-brand {
-    margin: 5px 0;
+    margin: 5px 5px;
 }
-.navbar-nav {
-    margin: 10px -15px;
-}
+
 .navbar-inverse .navbar-nav > li > a {
     color: white;
 }
@@ -175,4 +173,30 @@
 .size
 {
     min-height: 190px;
+}
+.navbar {
+    background: #1F77D0;
+    background: -moz-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #1F77D0), color-stop(100%, #533ce1));
+    background: -webkit-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
+    background: -o-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
+    background: -ms-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
+    background: linear-gradient(to right, #1F77D0 0%, #46d3ff 100%);
+    background-size: 150% 150%;
+}
+a {
+    outline: 0 !important;
+}
+button{
+    outline:0 !important;
+}
+.navbar-toggler-right {
+    margin: 9px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+.navbar {
+    padding: 0 1rem;
 }

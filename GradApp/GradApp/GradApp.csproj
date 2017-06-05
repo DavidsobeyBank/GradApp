@@ -255,14 +255,7 @@
     <Compile Include="ViewModel\ManagerProjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\ct-paper.css" />
-    <Content Include="Content\demo.css" />
     <Content Include="Content\examples.css" />
-    <Content Include="Content\font-awesome.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -296,15 +289,6 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="Scripts\bootstrap-datepicker.js" />
-    <Content Include="Scripts\bootstrap-select.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\ct-paper-checkbox.js" />
-    <Content Include="Scripts\ct-paper-radio.js" />
-    <Content Include="Scripts\ct-paper.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-ui-1.10.4.custom.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -368,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\" />
     <Folder Include="Views\ManagerProjectViewModel\" />
   </ItemGroup>
   <ItemGroup>
@@ -385,9 +370,6 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\ct-paper.css.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Projects\Manager.cshtml" />
