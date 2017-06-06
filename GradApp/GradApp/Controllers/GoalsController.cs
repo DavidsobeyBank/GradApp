@@ -156,5 +156,30 @@ namespace GradApp.Controllers
             }
             return View(goal);
         }
+
+        // GET: Goals/Create
+        public ActionResult GraduateCreate(int? id)
+        {
+            ViewBag.RotationID = new SelectList(db.Rotations.Where(g => g.RotationID == id), "RotationID", "RotationID");
+            return View();
+        }
+
+        // POST: Goals/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GraduateCreate([Bind(Include = "GoalID,GoalName,RotationID,GoalComment,GoalFeedback")] Goal goal)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Goals.Add(goal);
+                db.SaveChanges();
+                return RedirectToAction("Graduate","Projects", new { id = db.Rotations.Where(r => r.RotationID == goal.RotationID).First().ProjectID});
+            }
+
+            ViewBag.RotationID = new SelectList(db.Rotations, "RotationID", "RotationID", goal.RotationID);
+            return View(goal);
+        }
     }
 }

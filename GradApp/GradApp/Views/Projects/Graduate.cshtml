@@ -137,11 +137,14 @@
                         </div>
                     </div>
                     <div class="col-xs-1 col-sm-2 align-items-center text-left">
-                        <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("Graduate", "Goals", new { id = item.GoalID })"></a>
+                        <a class="btn btn-info" role="button" href="@Url.Action("Graduate", "Goals", new { id = item.GoalID })">View Goal</a>
                     </div>
-                </div>
+                </div>                
                 <br />
-            }
+            }    
+            <div class="col-xs-1 col-sm-2 align-items-center text-right">
+                <a class="btn btn-info" role="button" href="@Url.Action("GraduateCreate", "Goals", new { id = Model.RotationID })">Create Goal</a>
+            </div>        
         </div>
     </div>
 </div>

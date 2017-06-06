@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/favicon.ico")" />
 </head>
-<body>
+<body style="background-image:url(../../img/intro-background.jpg); background-repeat: no-repeat; background-size:cover; overflow:auto;">
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,9 +29,9 @@
                 @if (User.IsInRole("Graduate"))
                 {
                     <li class="nav-item"><a class="nav-link" href="~/Home/Graduate">My Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="~/Areas/Graduate">View Areas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="~/Rotations/Graduate">View Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="~/Managers/Graduate">View Managers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="~/Areas/Graduate">View Areas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="~/Rotations/Graduate">View Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="~/Managers/Graduate">View Managers</a></li>
                 }
                 @if (User.IsInRole("Manager"))
                 {
@@ -76,7 +76,7 @@
         </div>*@
 
 
-    <div class="container-fluid body-content" style="padding-top: 60px;">
+    <div class="container-fluid body-content" style="padding-top: 60px; overflow: scroll;">
         @RenderBody()
         <hr />
     </div>
