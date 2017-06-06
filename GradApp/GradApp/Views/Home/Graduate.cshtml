@@ -6,80 +6,79 @@
 }
 @{bool empty = true;}
 
-@foreach (var item in Model)
-{
-    if (item.EndDate > DateTime.Now)
-    {
-        empty = false;
-        <div class="col-md-6 ">
-            <div class="jumbotron size">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <h3>Current Rotation</h3>
-                    </div>
-                </div>
+<div class="col-xs-12">
 
-                <div class="row">
-                    <div class="col-xs-8 col-sm-8">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Project
-                                </strong>
-                            </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.ProjectName)
-                            </div>
+    @foreach (var item in Model)
+    {
+        if (item.EndDate > DateTime.Now)
+        {
+            empty = false;
+            <div class="col-md-6 ">
+                <div class="card size">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h3>Current Rotation</h3>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Area
-                                </strong>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Project
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.ProjectName)
+                                </div>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.Area.AreaName)
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Area
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.Area.AreaName)
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Manager
-                                </strong>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                                    <strong>
+                                        Manager
+                                    </strong>
+                                </div>
+                                <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                                    @Html.DisplayFor(modelItem => item.Manager.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => item.Manager.Surname)
+                                </div>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.Manager.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => item.Manager.Surname)
+                            <div class="col-xs-4 col-sm-4 align-items-center text-left">
+                                <a class="btn btn-info" href="@Url.Action("Graduate", "Projects", new { id = item.ProjectID })" role="button">View details</a>
                             </div>
-                        </div>
-                        <div class="col-xs-4 col-sm-4 align-items-center text-left">
-                            <a class="btn btn-info" href="@Url.Action("Graduate", "Projects", new { id = item.ProjectID })" role="button">View details</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     }
-}
-@if (empty)
-{
-    <div class="jumbotron size">
-        <div class="col-xs-6 col-sm-5 align-items-center text-right">
-            No previous rotations to display
-        </div>
-    </div>
-}
-            
+    @if (empty)
+    {
+        <h3>No previous rotations to display</h3>
+    }
+
+</div>
 
 
 @{empty = true;}
+<div class="col-xs-12">
 
-@foreach (var item in Model)
-{
-    if (item.EndDate < DateTime.Now)
+    @foreach (var item in Model)
     {
-        empty = false;
-        <div class="col-md-6 ">
-            <div class="jumbotron size">
+        if (item.EndDate < DateTime.Now)
+        {
+            empty = false;
+            <div class="card size">
                 <div class="row">
                     <div class="col-sm-8">
                         <h3>Previous Rotation</h3>
@@ -124,16 +123,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        }
     }
-}
-@if (empty)
-{
-    <div class="jumbotron size">
-        <div class="col-xs-6 col-sm-5 align-items-center text-right">
-            No previous rotations to display
-        </div>
-    </div>
-}
+    @if (empty)
+    {
+        <h3>No previous rotations to display</h3>
+    }
+</div>
 
             

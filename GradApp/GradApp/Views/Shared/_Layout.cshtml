@@ -12,11 +12,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="~/Content/examples.css" rel="stylesheet" />
 
     <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/favicon.ico")" />
 </head>
-<body style="background-image:url(../../img/intro-background.jpg); background-repeat: no-repeat; background-size:cover; overflow:auto;">
+<body style="background-image:url(../../img/intro-background.jpg); background-repeat: no-repeat; background-size:cover; overflow:hidden;">
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,25 +25,52 @@
         <a class="navbar-brand" href="~/Home/Index">
             <img alt="Brand" src="~/img/Logo.png" id="logo" style="width:40px">
         </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse pull-right" id="navbarNav">
             <ul class="navbar-nav">
-                @if (User.IsInRole("Graduate"))
-                {
-                    <li class="nav-item"><a class="nav-link" href="~/Home/Graduate">My Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="~/Areas/Graduate">View Areas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="~/Rotations/Graduate">View Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="~/Managers/Graduate">View Managers</a></li>
-                }
-                @if (User.IsInRole("Manager"))
-                {
-                    <li class="nav-item"><a class="nav-link" href="#">View My Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Create Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">View Graduates</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Graduate Applications</a></li>
-                }
+                <li class="nav-item"><a class="nav-link" href="#">Move this list to the right side --> :/ </a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
             </ul>
+
         </div>
     </nav>
+    <div class="container-fluid">
+        <div class="row d-flex d-md-block flex-nowrap wrapper">
+            <div class="col-lg-2 float-left col-1 pl-0 pr-0 collapse width show hld" id="sidebar">
+                <div class="list-group border-0 text-center text-lg-left">
+                    @if (User.IsInRole("Graduate"))
+                    {
+                    <a href="~/Home/Index" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-md-down">Dashboard</span></a>
+                    <a href="~/Managers/Graduate" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-user-circle"varia-hidden="true"></i><span class="hidden-md-down">View Managers</span></a>
+                    <a href="~/Areas/Graduate" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-info" aria-hidden="true"></i><span class="hidden-md-down">View Areas</span></a>
+                    <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="hidden-md-down">Projects</span></a>
+                    <div class="collapse" id="menu3">
+                        <a href="#" class="list-group-item" data-parent="#menu3">View Available Project</a>
+                        <a href="#" class="list-group-item" data-parent="#menu3">Join a Project</a>
+                        <a href="#" class="list-group-item" data-parent="#menu3">View Current Project</a>
+                    </div>
+                    }
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <a href="~/Home/Index" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><span class="hidden-md-down">Dashboard</span></a>
+                        <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="hidden-md-down">Graduates</span></a>
+                        <div class="collapse" id="menu1">
+                            <a href="#" class="list-group-item" data-parent="#menu3">View All Graduates</a>
+                            <a href="#" class="list-group-item" data-parent="#menu3">Graduates in my Area</a>
+                        </div>
+                        <a href="~/Areas/Graduate" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><span class="hidden-md-down">View Areas</span></a>
+                        <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="hidden-md-down">Projects</span></a>
+                        <div class="collapse" id="menu3">
+                            <a href="#" class="list-group-item" data-parent="#menu3">View My Project</a>
+                            <a href="#" class="list-group-item" data-parent="#menu3">View All Projects</a>
+                            <a href="#" class="list-group-item" data-parent="#menu3">Create New Project</a>
+                            <a href="#" class="list-group-item" data-parent="#menu3">View Terminated Project</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    
     @*<div class="navbar">
             <nav class="navbar navbar-inverse navbar-fixed-top" style="height:80px">
                 <div class="container-fluid">
@@ -75,12 +103,19 @@
             </nav>
         </div>*@
 
-
-    <div class="container-fluid body-content" style="padding-top: 60px; overflow: scroll;">
+    <a href="#" data-target="#sidebar" class="arrw" data-toggle="collapse"><i id="clicks" class="fa fa-angle-double-left fa-2x py-2 p-1" aria-hidden="true"></i></a>
+    <div class="container-fluid body-content" style="padding-top: 60px; overflow: hidden;">
         @RenderBody()
-        <hr />
     </div>
 
 
 </body>
 </html>
+<script>
+    document.getElementById("clicks").addEventListener("click", function (e) {
+        console.log("test");
+        var target = e.target;
+        target.classList.toggle("fa-angle-double-left");
+        target.classList.toggle("fa-angle-double-right");
+    }, false);
+</script>
