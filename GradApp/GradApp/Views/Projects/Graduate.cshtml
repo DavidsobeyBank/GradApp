@@ -141,14 +141,17 @@
                     </div>
                 </div>                
                 <br />
+            }   
+            @if (Model.Project.EndDate > DateTime.Now )
+            {
+                <div class="col-xs-1 col-sm-2 align-items-center text-right">
+                    <a class="btn btn-info" role="button" href="@Url.Action("GraduateCreate", "Goals", new { id = Model.RotationID })">Create Goal</a>
+                </div>
             }    
-            <div class="col-xs-1 col-sm-2 align-items-center text-right">
-                <a class="btn btn-info" role="button" href="@Url.Action("GraduateCreate", "Goals", new { id = Model.RotationID })">Create Goal</a>
-            </div>        
         </div>
     </div>
 </div>
         
 <p>
-    <a href="@Url.Action("Graduate","Home",null,null)" class="btn btn-info" role="button">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-info" role="button">Back to Dashboard</a>
 </p>

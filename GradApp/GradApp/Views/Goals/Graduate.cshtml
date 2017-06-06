@@ -44,13 +44,19 @@
                             @Html.DisplayFor(model => model.GoalFeedback)
                         </div>
                     </div>
-                </div>
+                </div>                 
             </div>
+            @if (Model.Rotation.Project.EndDate > DateTime.Now)
+            {
+                <div class="col-xs-1 col-sm-2 align-items-center text-right">
+                    <a class="btn btn-info" role="button" href="@Url.Action("GraduateEdit", "Goals", new { id = Model.GoalID })">Edit Goal</a>
+                </div>
+            }            
             <br />
         </div>
     </div>
 </div>
         
 <p>
-    <a href="@Url.Action("Graduate","Projects",new { id = Model.Rotation.ProjectID },null)" class="btn btn-info" role="button">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-info" role="button">Back to Rotation</a>
 </p>

@@ -84,11 +84,11 @@
                                 @Html.DisplayFor(modelItem => item.EndDate)
                             </div>
                         </div>
-                    </div>  
-                    <!--<div class="col-xs-4 col-sm-4 align-items-center text-left">
-                        <a class="fa fa-2x fa-chevron-circle-right" href="@Url.Action("Graduate", "Projects", new { id = item.ProjectID })"></a>
-                    </div>-->                  
-                </div>                
+                    </div>                                     
+                </div>
+                <div class="col-xs-1 col-sm-2 align-items-center text-right">
+                    <a class="btn btn-info" role="button" href="@Url.Action("GraduateCreate", "ProjectWishLists", new { projectID = item.ProjectID } )">Request to Join</a>
+                </div>
                 <br />
             }
 
