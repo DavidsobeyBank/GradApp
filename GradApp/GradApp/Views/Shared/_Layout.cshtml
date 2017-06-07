@@ -18,36 +18,32 @@
     <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/favicon.ico")" />
 </head>
 <body style="background-image:url(../../img/intro-background.jpg); background-repeat: no-repeat; background-size:cover; overflow:hidden;">
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="~/Home/Index">
-            <img alt="Brand" src="~/img/Logo.png" id="logo" style="width:40px">
-        </a>
-        <div class="collapse navbar-collapse pull-right" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#">Move this list to the right side --> :/ </a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-            </ul>
-
-        </div>
-    </nav>
+    
     <div class="container-fluid">
         <div class="row d-flex d-md-block flex-nowrap wrapper">
             <div class="col-lg-2 float-left col-1 pl-0 pr-0 collapse width show hld" id="sidebar">
                 <div class="list-group border-0 text-center text-lg-left">
+                    <div class="row" style="color:white;">
+                            <a class="" href="~/Home/Index">
+                                <div class="col"></div>
+                                <div class="col">
+                                    <img alt="Brand" src="~/img/Logo.png" class="center-block" id="logo" style="width:40px; display:inline">
+
+                                </div>
+                                <div class="col"></div>
+                            </a>
+                    </div>
                     @if (User.IsInRole("Graduate"))
                     {
-                    <a href="~/Home/Index" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-md-down">Dashboard</span></a>
-                    <a href="~/Managers/Graduate" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-user-circle"varia-hidden="true"></i><span class="hidden-md-down">View Managers</span></a>
-                    <a href="~/Areas/Graduate" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-info" aria-hidden="true"></i><span class="hidden-md-down">View Areas</span></a>
-                    <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="hidden-md-down">Projects</span></a>
-                    <div class="collapse" id="menu3">
-                        <a href="#" class="list-group-item" data-parent="#menu3">View Available Project</a>
-                        <a href="#" class="list-group-item" data-parent="#menu3">Join a Project</a>
-                        <a href="#" class="list-group-item" data-parent="#menu3">View Current Project</a>
-                    </div>
+                        <a href="~/Home/Index" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-md-down">Dashboard</span></a>
+                        <a href="~/Managers/Graduate" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-user-circle" varia-hidden="true"></i><span class="hidden-md-down">View Managers</span></a>
+                        <a href="~/Areas/Graduate" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-info" aria-hidden="true"></i><span class="hidden-md-down">View Areas</span></a>
+                        <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="hidden-md-down">Projects</span></a>
+                        <div class="collapse" id="menu3">
+                            <a href="#" class="list-group-item" data-parent="#menu3">View Available Project</a>
+                            <a href="#" class="list-group-item" data-parent="#menu3">Join a Project</a>
+                            <a href="#" class="list-group-item" data-parent="#menu3">View Current Project</a>
+                        </div>
                     }
                     @if (User.IsInRole("Manager"))
                     {
