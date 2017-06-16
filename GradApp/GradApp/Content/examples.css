@@ -7,11 +7,11 @@
     min-height: 570px;
 }
 
-    .landing-header .motto {
-        padding-top: 8%;
-        text-align: left;
-        z-index: 3;
-    }
+.landing-header .motto {
+    padding-top: 8%;
+    text-align: left;
+    z-index: 3;
+}
 
 .landing-section {
     padding: 100px 0;
@@ -207,17 +207,12 @@
     border: 1px solid black;
 }
 
-.size {
-    min-height: 190px;
-}
-
 .navbar {
     background: #1F77D0;
     background: -moz-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
     background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #1F77D0), color-stop(100%, #533ce1));
     background: -webkit-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
     background: -o-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
-    background: -ms-linear-gradient(top, #1F77D0 80%, #533ce1 100%);
     background: linear-gradient(to right, #1F77D0 0%, #46d3ff 100%);
     background-size: 150% 150%;
 }
@@ -365,14 +360,15 @@ button {
     transition-timing-function: ease-out;
 }
 
-    .collapsing.width {
-        -webkit-transition-property: width, visibility;
-        transition-property: width, visibility;
-        width: 0;
-        height: 100%;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-    }
+.collapsing.width {
+    -webkit-transition-property: width, visibility;
+    transition-property: width, visibility;
+    width: 0;
+    height: 100%;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
 @media(min-width: 992px)
 {
     .hld{
@@ -388,7 +384,31 @@ button {
 }
 @media(max-width:770px)
 {
-    .arrw {
+    .arrw{
         padding-left: 40px
     }
+}
+
+.card
+{
+    background-color:white;
+    opacity:0.8;
+    padding:10px;
+}
+
+.navbar .navbar-brand
+{
+    margin: 2px;
+}
+
+.navbar .dropdown-menu
+{
+    background: none;
+    border: none;
+}
+
+.navbar .dropdown-item:hover
+{
+    color:white;
+    background:none;
 }
