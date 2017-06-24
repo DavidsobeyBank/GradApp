@@ -6,57 +6,53 @@
 }
 
 <div class="container-fluid">
-    <br />
-
-    <div class="row">
-        <div class="col-sm-8">
-            <h3>Goal</h3>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-8">
-            <h3>@Html.DisplayFor(model => model.GoalName)</h3>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="col-xs-8 col-sm-8">
+    <div class="row ">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+            <h2>Rotation Goal</h2>
+            <div class="row card">
+                <div class="container">
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-12 col-sm-12 card_header">
+                            <h4><strong>@Html.DisplayFor(model => model.GoalName)</strong></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
                                 Comment
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-5 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.GoalComment)
+                            <text>&nbsp;</text>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
                                 Feedback
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-5 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.GoalFeedback)
+                            <text>&nbsp;</text>
                         </div>
                     </div>
-                </div>                 
-            </div>
-            @if (Model.Rotation.Project.EndDate > DateTime.Now)
-            {
-                <div class="col-xs-1 col-sm-2 align-items-center text-right">
-                    <a class="btn btn-info" role="button" href="@Url.Action("GraduateEdit", "Goals", new { id = Model.GoalID })">Edit Goal</a>
                 </div>
-            }            
-            <br />
+            </div>
+        </div>
+    </div>
+    @if (Model.Rotation.Project.EndDate > DateTime.Now)
+    {
+        <div class="row ">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+                <a class="btn btn-warning" role="button" href="@Url.Action("GraduateEdit", "Goals", new { id = Model.GoalID })">Edit Goal</a>
+            </div>
+        </div>
+    }
+    <div class="row ">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+            <a href="javascript:history.back()" class="btn btn-info">Back to Rotation</a>
         </div>
     </div>
 </div>
-        
-<p>
-    <a href="javascript:history.back()" class="btn btn-info" role="button">Back to Rotation</a>
-</p>

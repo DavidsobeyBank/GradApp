@@ -6,89 +6,80 @@
 }
 
 <div class="container-fluid">
-    <br />
-
-    <div class="row">
-        <div class="col-sm-8">
+    <div class="row ">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
             @if (Model.Project.EndDate > DateTime.Now)
             {
-                <h3>Current</h3>
+                <h2>Current Rotation</h2>
             }
             else
             {
-                <h3>Previous</h3>
+                <h2>Previous Rotation</h2>
             }
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-8">
-            <h3>Rotation - @Html.DisplayFor(model => model.Project.ProjectName)</h3>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="col-xs-8 col-sm-8">
+            <div class="row card">
+                <div class="container">
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-12 col-sm-12 card_header">
+                            <h4><strong>@Html.DisplayFor(model => model.Project.ProjectName)</strong></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
                                 Area
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.Project.Area.AreaName)
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
                                 Manager
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.Project.Manager.Name)<text>&nbsp;</text>@Html.DisplayFor(model => model.Project.Manager.Surname)
-
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.Brief)
+                                Brief
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.Project.Brief)
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
-                                @Html.DisplayNameFor(model => model.Project.Skills)
+                                Skills
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.Project.Skills)
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
-                                Begin
+                                Start Date
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.Project.StartDate)
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                        <div class="col-xs-4 col-sm-4">
                             <strong>
-                                End
+                                End Date
                             </strong>
                         </div>
-                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                        <div class="col-xs-8 col-sm-8">
                             @Html.DisplayFor(model => model.Project.EndDate)
                         </div>
                     </div>
@@ -97,61 +88,54 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="col-xs-8 col-sm-8">
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                            <h3>Goals</h3>
-                        </div>
-                        <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    @{bool empty = true;}
+    <div class="row ">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+            <h2>Rotation Goals</h2>
 
             @foreach (var item in Model.Goals.ToList())
             {
-                <div class="row">
-                    <div class="col-xs-8 col-sm-8">
+                empty = false;
+                <div class="row card link" onclick="location.href='@Url.Action("Graduate", "Goals", new { id = item.GoalID })'">
+                    <div class="container">
                         <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Goal
-                                </strong>
-                            </div>
-                            <div class="col-xs-6 col-sm-5 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.GoalName)
+                            <div class="col-xs-12 col-sm-12 card_header">
+                                <h4><strong>@Html.DisplayFor(modelItem => item.GoalName)</strong></h4>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <div class="col-xs-4 col-sm-4">
                                 <strong>
                                     Comment
                                 </strong>
                             </div>
-                            <div class="col-xs-6 col-sm-5 align-items-center text-left">
+                            <div class="col-xs-8 col-sm-8">
                                 @Html.DisplayFor(modelItem => item.GoalComment)
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-1 col-sm-2 align-items-center text-left">
-                        <a class="btn btn-info" role="button" href="@Url.Action("Graduate", "Goals", new { id = item.GoalID })">View Goal</a>
-                    </div>
-                </div>                
-                <br />
-            }   
-            @if (Model.Project.EndDate > DateTime.Now )
-            {
-                <div class="col-xs-1 col-sm-2 align-items-center text-right">
-                    <a class="btn btn-info" role="button" href="@Url.Action("GraduateCreate", "Goals", new { id = Model.RotationID })">Create Goal</a>
                 </div>
-            }    
+            }
+            @if (empty)
+            {
+                <h3>No goals set for rotation</h3>
+            }
+        </div>
+    </div>
+
+    @if (Model.Project.EndDate > DateTime.Now)
+    {
+        <div class="row ">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+                <a class="btn btn-success" href="@Url.Action("GraduateCreate", "Goals", new { id = Model.RotationID })">Add Goal</a>
+            </div>
+        </div>
+    }
+    <div class="row ">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+            <a href="javascript:history.back()" class="btn btn-info">Back to Dashboard</a>
         </div>
     </div>
 </div>
         
-<p>
-    <a href="javascript:history.back()" class="btn btn-info" role="button">Back to Dashboard</a>
-</p>
+
