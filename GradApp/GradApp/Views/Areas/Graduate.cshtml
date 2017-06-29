@@ -6,48 +6,44 @@
 }
 
 <div class="container-fluid">
-    <br />
-
-    <div class="row">
-        <div class="col-sm-8">
-            <h3>Areas</h3>
+    <div class="row ">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+            <h2>Areas</h2>
+            @foreach (var item in Model)
+            {
+                <div class="row card">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 card_header">
+                                <h4><strong>@Html.DisplayFor(modelItem => item.AreaName)</strong></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Description
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @Html.DisplayFor(modelItem => item.Comment)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Manager
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @foreach (var manager in item.Managers)
+                                {
+                                    @Html.DisplayFor(modelItem => manager.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => manager.Surname)<br />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-xs-8 col-sm-8">
-                <div class="row">
-                    <div class="col-xs-6 col-sm-5 align-items-center">
-                        <h3>@Html.DisplayFor(modelItem => item.AreaName)</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                        <strong>
-                            Manager
-                        </strong>
-                    </div>
-                    <div class="col-xs-6 col-sm-5 align-items-center text-left">
-                        @foreach (var manager in item.Managers)
-                        {
-                            @Html.DisplayFor(modelItem => manager.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => manager.Surname)<br/>
-                        }
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                        <strong>
-                            Description
-                        </strong>
-                    </div>
-                    <div class="col-xs-6 col-sm-5 align-items-center text-left">
-                        @Html.DisplayFor(modelItem => item.Comment)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-    }
 </div>

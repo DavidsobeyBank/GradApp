@@ -5,100 +5,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{bool empty = true;}
 <div class="container-fluid">
-    <br />
-
-    <div class="row">
-        <div class="col-sm-8">
-            <h3>Available Rotations</h3>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-8">
-            @{bool empty = true;}
-
+    <div class="row ">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+            <h2>Available Rotations</h2>
             @foreach (var item in Model)
             {
                 empty = false;
-
-                <div class="row">
-                    <div class="col-xs-8 col-sm-8">
+                <div class="row card link" onclick="location.href='@Url.Action("GraduateCreate", "ProjectWishLists", new { projectID = item.ProjectID } )'">
+                    <div class="container">
                         <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Project Name
-                                </strong>
-                            </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.ProjectName)
+                            <div class="col-xs-12 col-sm-12 card_header">
+                                <h4><strong>@Html.DisplayFor(modelItem => item.ProjectName)</strong></h4>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <div class="col-xs-4 col-sm-4">
                                 <strong>
                                     Area
                                 </strong>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            <div class="col-xs-8 col-sm-8">
                                 @Html.DisplayFor(modelItem => item.Area.AreaName)
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
+                            <div class="col-xs-4 col-sm-4">
                                 <strong>
                                     Manager
                                 </strong>
                             </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
+                            <div class="col-xs-8 col-sm-8">
                                 @Html.DisplayFor(modelItem => item.Manager.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => item.Manager.Surname)
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Brief
-                                </strong>
-                            </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.Brief)
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Start Date
-                                </strong>
-                            </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.StartDate)
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-5 align-items-center text-right ">
-                                <strong>
-                                    Start Date
-                                </strong>
-                            </div>
-                            <div class="col-xs-6 col-sm-7 align-items-center text-left">
-                                @Html.DisplayFor(modelItem => item.EndDate)
-                            </div>
-                        </div>
-                    </div>                                     
-                </div>
-                <div class="col-xs-1 col-sm-2 align-items-center text-right">
-                    <a class="btn btn-info" role="button" href="@Url.Action("GraduateCreate", "ProjectWishLists", new { projectID = item.ProjectID } )">Request to Join</a>
-                </div>
-                <br />
-            }
-
-            @if (empty)
-            {
-                <div class="row">
-                    <div class="col-xs-6 col-sm-5 align-items-center text-right">
-                        No available rotations to display
                     </div>
                 </div>
+            }
+            @if (empty)
+            {
+                <h3>No current rotations to display</h3>
             }
         </div>
     </div>

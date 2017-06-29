@@ -139,7 +139,9 @@ namespace GradApp.Controllers
             int graduateID = db.Graduates.Where(g => g.Email == User.Identity.Name).First().GraduateID;
             ViewBag.GraduateID = new SelectList(db.Graduates.Where(g => g.GraduateID == graduateID), "GraduateID", "Name");
             ViewBag.ProjectID = new SelectList(db.Projects.Where(p => p.ProjectID == projectID), "ProjectID", "ProjectName");
-            return View();
+            ProjectWishList pwl = new ProjectWishList();
+            pwl.Project = db.Projects.Find(projectID);
+            return View(pwl);
         }
 
         // POST: ProjectWishLists/Create
