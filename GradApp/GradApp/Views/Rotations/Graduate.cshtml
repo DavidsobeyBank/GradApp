@@ -12,8 +12,20 @@
             <h2>Available Rotations</h2>
             @foreach (var item in Model)
             {
+                bool requested = false;
+                var page = "GraduateCreate";
+
+                foreach (var request in item.ProjectWishLists)
+                {
+                    if (request.Graduate.Email == User.Identity.Name)
+                    {
+                        requested = true;
+                        page = "GraduateView";
+                        break;
+                    }
+                }
                 empty = false;
-                <div class="row card link" onclick="location.href='@Url.Action("GraduateCreate", "ProjectWishLists", new { projectID = item.ProjectID } )'">
+                <div class="row card link" onclick="location.href='@Url.Action(page, "ProjectWishLists", new { projectID = item.ProjectID } )'">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 card_header">
@@ -40,8 +52,16 @@
                                 @Html.DisplayFor(modelItem => item.Manager.Name)<text>&nbsp;</text>@Html.DisplayFor(modelItem => item.Manager.Surname)
                             </div>
                         </div>
+                        @if (requested)
+                        {
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 request">
+                                    <h5>Requested</h5>
+                                </div>
+                            </div>
+                        }                   
                     </div>
-                </div>
+                </div>                
             }
             @if (empty)
             {

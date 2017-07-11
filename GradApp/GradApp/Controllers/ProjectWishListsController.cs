@@ -144,6 +144,17 @@ namespace GradApp.Controllers
             return View(pwl);
         }
 
+        public ActionResult GraduateView(int? projectID)
+        {
+            int graduateID = db.Graduates.Where(g => g.Email == User.Identity.Name).First().GraduateID;
+            ViewBag.GraduateID = new SelectList(db.Graduates.Where(g => g.GraduateID == graduateID), "GraduateID", "Name");
+            ViewBag.ProjectID = new SelectList(db.Projects.Where(p => p.ProjectID == projectID), "ProjectID", "ProjectName");
+
+            ProjectWishList pwl = db.ProjectWishLists.Where(g => g.ProjectID == projectID).First();
+            pwl.Project = db.Projects.Find(projectID);
+            return View(pwl);
+        }
+
         // POST: ProjectWishLists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

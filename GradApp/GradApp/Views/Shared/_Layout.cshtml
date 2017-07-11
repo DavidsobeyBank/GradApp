@@ -70,48 +70,64 @@
             </div>
         </div>
     </div>*@
-    
-    
 
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="z-index:999; position:fixed; width:100%; opacity:0.95;">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#"><img alt="GradApp" src="~/img/Logo.png" style="width:40px;"></a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="~/Home/Index">Home</a>
-                </li>
+                @if (User.IsInRole("Graduate"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active" href="~/Home/Graduate">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Managers/Graduate">Managers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Areas/Graduate">Areas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Rotations/Graduate">Rotations</a>
+                    </li>
+                }
+                @if (User.IsInRole("Manager"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown link
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <ul class="navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
                 <li class="nav-item">
-                    <a class="nav-link" href="~/Managers/Graduate">View Managers</a>
+                    <a class="nav-link" href="~/Account/SignOut">Sign Out</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown link
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                }
+                @if (!User.Identity.IsAuthenticated)
+                {
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Account/SignIn">Sign In</a>
                 </li>
+                }
             </ul>
         </div>
     </nav>
-
     
     <div class="container-fluid" style="padding-top: 60px; font-family: 'Roboto', sans-serif;">
         @RenderBody()
     </div>
-
-
 </body>
 </html>
-<script>
-    $(".navbar-nav li").on("click", function () {
-        $(".navbar-nav li").find(".active").removeClass("active");
-      $(this).parent().addClass("active");
-    });
-</script>
+
