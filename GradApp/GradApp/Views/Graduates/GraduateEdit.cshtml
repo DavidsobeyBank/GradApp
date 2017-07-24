@@ -1,0 +1,100 @@
+﻿@model GradApp.Models.Graduate
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+                <h2>Profile</h2>
+                <div class="row card">
+                    <div class="container form-horizontal">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 card_header">
+                                <h4><strong>Details</strong></h4>
+                            </div>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.GraduateID)
+                        <div class="row form-group">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Name
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Surname
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Email
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Preferred Role
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @Html.EditorFor(model => model.PreferredRole, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PreferredRole, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Degree
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @Html.EditorFor(model => model.Degree, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-4 col-sm-4">
+                                <strong>
+                                    Graduate Year
+                                </strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                @Html.EditorFor(model => model.GraduateYear, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GraduateYear, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-lg-4 mx-auto">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}

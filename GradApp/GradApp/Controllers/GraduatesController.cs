@@ -78,6 +78,33 @@ namespace GradApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult GraduateEdit([Bind(Include = "GraduateID,Name,Surname,Email,PreferredRole,Degree,GraduateYear")] Graduate graduate)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(graduate).State = EntityState.Modified;
+                db.SaveChanges();
+                return View(graduate);
+            }
+            return View(graduate);
+        }
+
+        // GET: Graduates/Edit/5
+        public ActionResult GraduateEdit()
+        {
+            Graduate graduate = db.Graduates.Where(g => g.Email == User.Identity.Name).Single();
+            if (graduate == null)
+            {
+                return HttpNotFound();
+            }
+            return View(graduate);
+        }
+
+        // POST: Graduates/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GraduateID,Name,Surname,Email,PreferredRole,Degree,GraduateYear")] Graduate graduate)
         {
             if (ModelState.IsValid)

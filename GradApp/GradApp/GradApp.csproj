@@ -398,6 +398,7 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Views\ProjectWishLists\GraduateView.cshtml" />
+    <Content Include="Views\Graduates\GraduateEdit.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
